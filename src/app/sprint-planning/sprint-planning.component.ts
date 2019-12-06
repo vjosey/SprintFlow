@@ -1,3 +1,4 @@
+import { UserStory } from './../model/UserStory';
 import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 declare var $: any;
@@ -39,7 +40,7 @@ addUserStory( title: string, detail: string) {
   this.userStory = new UserStory();
   this.userStory.id = 16; // can to auto id
   this.userStory.title = title;
-  this.userStory.detail = detail;
+  this.userStory.description = detail;
   this.stories.push(this.userStory);
   $('#newStoryModal').modal('hide');
   this.userStory = null;
@@ -50,18 +51,24 @@ OnComplete() {
 
 }
 
-export class UserStory {
-  id: number;
-  title: string;
-  detail: string;
-
-  constructor() {}
-
-}
 
 export const USERSTORE: UserStory[] = [
-  { id: 11, title: 'Dr Nice' , detail: 'dbkfjnkejnfdskn'},
-  { id: 12, title: 'Narco' , detail: 'dbkfjnkejnfdskn'},
-  { id: 13, title: 'Bombasto' , detail: 'dbkfjnkejnfdskn'},
-  { id: 14, title: 'Celeritas', detail: 'dbkfjnkejnfdskn' },
+  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
+  priority: 1, comments: [],
+  storyPoint: 25 },
+  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
+  priority: 1, comments: [],
+  storyPoint: 25 },
+  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
+  priority: 1, comments: [],
+  storyPoint: 25 },
+  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
+  priority: 1, comments: [],
+  storyPoint: 25 },
+  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
+  priority: 1, comments: [],
+  storyPoint: 25 },
+  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
+  priority: 1, comments: [],
+  storyPoint: 25 }
 ];

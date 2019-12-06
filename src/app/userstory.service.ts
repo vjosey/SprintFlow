@@ -1,3 +1,4 @@
+import { UserStory } from './model/UserStory';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,4 +7,10 @@ import { Injectable } from '@angular/core';
 export class UserstoryService {
 
   constructor() { }
+
+
+  getUserStory(): UserStory[] {
+    return [];
+    // TODO: replace with Mockr database
+  }
 }
