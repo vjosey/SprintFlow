@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -13,14 +14,9 @@ stories: UserStory[] = USERSTORE;
 
 selectedStory: UserStory;
 
-userStory: UserStory = {
-  id: 1,
-  title: 'New',
-  detail: 'new stuff'
-};
+userStory: UserStory = new UserStory();
 
 constructor() {
-
 }
 
   ngOnInit() {
@@ -28,25 +24,29 @@ constructor() {
 
 selectedUserStory(story: UserStory) {
  this.selectedStory = story;
- $('StoryModal').modal('show');
+ $('#StoryModal').modal('show');
 }
 
-spOn() {
+OpenModal() {
   // alert( 'hello' );
   $('#newStoryModal').modal('show');
 
 }
 
-saveNewUserStory() {
+addUserStory( title: string, detail: string) {
 
   // add to array
+  this.userStory = new UserStory();
   this.userStory.id = 16; // can to auto id
+  this.userStory.title = title;
+  this.userStory.detail = detail;
   this.stories.push(this.userStory);
   $('#newStoryModal').modal('hide');
   this.userStory = null;
 }
 
-
+OnComplete() {
+}
 
 }
 
@@ -55,7 +55,7 @@ export class UserStory {
   title: string;
   detail: string;
 
-  constructor(){}
+  constructor() {}
 
 }
 

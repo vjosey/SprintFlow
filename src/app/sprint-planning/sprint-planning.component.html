@@ -4,7 +4,7 @@
 
 <div class="row">
 <div class="col-5">
-<form>
+
   <div class="form-group form-row">
     <input type="text" class="form-control" id="sprintNameInput" placeholder="Sprint Name">
   </div>
@@ -22,15 +22,13 @@
       <textarea class="form-control" id="sprintDesciptionTextarea" rows="3"></textarea>
     </div>
 
-
-</form>
 </div>
 
 <div class="col-5 mr-7">
     <div class="row">
         <div class="card p-2 m-3">
             <h6>Create User Story</h6>
-            <button class="btn btn-primary" type="submit" (click)="spOn()">ADD</button>
+            <button class="btn btn-primary" type="submit" (click)="OpenModal()">ADD</button>
             </div>
     </div>
 
@@ -47,7 +45,7 @@
 
 
 
-    <button class="btn btn-primary" type="submit" (click)="spOn()" >Completed</button>
+    <button class="btn btn-primary" type="submit"  [routerLink]="['/sprint-board']"  >Completed</button>
 
 
 
@@ -64,21 +62,21 @@
         </div>
         <div class="modal-body">
          <!-- Content-->
-         <form>
+
             <div class="form-group form-row">
-              <input  [(ngModel)]="userStory.title" name="userStoryInput" type="text" class="form-control" id="userStoryInput" placeholder="Story Title">
+              <input  #newStoryTitle name="userStoryInput" type="text" class="form-control" placeholder="Story Title">
             </div>
               <div class="form-group form-row">
-                  <label for="sprintDesciptionTextarea">Description</label>
-                <textarea [(ngModel)]="userStory.detail"  name="sprintDesciptionTextarea" class="form-control" id="sprintDesciptionTextarea" rows="3"></textarea>
+
+                <textarea #newStoryDetail name="DesciptionTextarea" class="form-control"></textarea>
               </div>
 
 
-          </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="saveNewUserStory()" >Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="addUserStory(newStoryTitle.value, newStoryDetail.value)" >Save changes</button>
         </div>
       </div>
     </div>
@@ -92,12 +90,12 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="StoryModalTitle">{{ selectedStory.title }}</h5>
+              <h5 *ngIf="selectedStory"  class="modal-title" id="StoryModalTitle">{{ selectedStory.title }}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div *ngIf="selectedStory" class="modal-body">
              <!-- Content-->
              {{ selectedStory.detail }}
 
