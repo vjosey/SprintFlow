@@ -19,6 +19,8 @@ sprints: Sprint[];
     reviewDetails: '', retroDetails: '', startDate: new Date(), endDate: new Date(),
     userStories: [], sprintSummary: 'We are collection feedback from stalkholders'};
 
+  // sprints = SPRINTS;
+
     constructor(private sprintService: SprintService ) { }
 
   ngOnInit() {

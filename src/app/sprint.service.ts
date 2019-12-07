@@ -1,7 +1,7 @@
 import { Sprint } from './model/sprint';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
+import { SPRINTS } from './mock-sprints';
 
 @Injectable({
   providedIn: 'root'
