@@ -1,0 +1,11 @@
+<h6 id="dashboard">Dashbord</h6>
+<div class="row">
+  <div class="card sprint m-3" style="width: 18rem;" *ngFor="let sprint of sprints">
+      <div class="col">
+        <div id="spring-name" class="row">{{ sprint.name }}</div>
+        <div id="start-date" class="row">{{ sprint.startDate }}</div>
+        <div id="end-date" class="row">{{ sprint.endDate }}</div>
+        <div class="sprint-summary">{{ sprint.sprintSummary }}</div>
+      </div>
+  </div>
+</div>

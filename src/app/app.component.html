@@ -1,0 +1,19 @@
+
+<div id="navDiv" class="row ml-2 mr-2 p-1">
+  <div class="col-2">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="col-7"></div>
+  <div class="col-3">
+    <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >Dashboard</a>
+    <a [routerLink]="['/sprint-planning']" routerLinkActive="router-link-active" >Planning</a>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
+<footer class="fixed-bottom text-center">Develop by Team git push -force</footer>
+</div>
