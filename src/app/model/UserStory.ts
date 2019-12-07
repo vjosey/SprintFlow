@@ -5,4 +5,6 @@ export class UserStory {
   priority: number;
   comments: string[];
   storyPoint: number;
+  status: string;
+  sprintId: number;
 }

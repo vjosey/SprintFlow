@@ -12,7 +12,7 @@ declare var $: any;
 export class SprintPlanningComponent implements OnInit {
 
 
-stories: UserStory[] = USERSTORE;
+stories: UserStory[] = [];
 
 selectedStory: UserStory;
 
@@ -51,30 +51,7 @@ OnComplete() {
 }
 
 
-/* getUserStory() {
- this.userstoryService.getUserStory();
-} */
 
 }
 
 
-export const USERSTORE: UserStory[] = [
-  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
-  priority: 1, comments: [],
-  storyPoint: 25 },
-  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
-  priority: 1, comments: [],
-  storyPoint: 25 },
-  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
-  priority: 1, comments: [],
-  storyPoint: 25 },
-  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
-  priority: 1, comments: [],
-  storyPoint: 25 },
-  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
-  priority: 1, comments: [],
-  storyPoint: 25 },
-  { id: 11, title: 'User should be able' , description: 'dbkfjnkejnfdskn',
-  priority: 1, comments: [],
-  storyPoint: 25 }
-];

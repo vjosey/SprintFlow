@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserStory } from './model/UserStory';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { USERSTORIES } from './mock-userstory';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,8 @@ export class UserstoryService {
 
   constructor() { }
 
- // TODO: replace with Mock database
- USERSTORE: UserStory[];
-
   getUserStory(): Observable<UserStory[]> {
-    return of(this.USERSTORE);
+    return of(USERSTORIES);
     // TODO: replace with Mock database
   }
 

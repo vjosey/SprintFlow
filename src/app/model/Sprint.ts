@@ -10,4 +10,5 @@ export class Sprint {
   endDate: Date;
   userStories: UserStory[];
   sprintSummary: string;
+  status: string;
 }

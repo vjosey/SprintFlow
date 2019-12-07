@@ -10,12 +10,10 @@ export class SprintService {
 
   constructor() { }
 
-  // TODO: replace with mock data or mock database
-  SPRINT: Sprint[];
 
  getSprints(): Observable<Sprint[]> {
    // TODO: replace for database
-   return of(this.SPRINT);
+   return of(SPRINTS);
  }
 
 

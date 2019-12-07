@@ -4,7 +4,6 @@ import { Sprint } from './../model/Sprint';
 import { Component, OnInit } from '@angular/core';
 import { getLocaleDateFormat } from '@angular/common';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,13 +13,6 @@ export class DashboardComponent implements OnInit {
 
 sprints: Sprint[];
 
-  sprint: Sprint = {  id: 1,
-    name: 'YYYY-QX-X/6', description: 'Collecting feedback from stalkholders',
-    reviewDetails: '', retroDetails: '', startDate: new Date(), endDate: new Date(),
-    userStories: [], sprintSummary: 'We are collection feedback from stalkholders'};
-
-  // sprints = SPRINTS;
-
     constructor(private sprintService: SprintService ) { }
 
   ngOnInit() {
@@ -28,7 +20,7 @@ sprints: Sprint[];
   }
 
   getSprints(): void {
-
+    this.sprintService.getSprints().subscribe( sprints => this.sprints = sprints);
   }
 
 }
