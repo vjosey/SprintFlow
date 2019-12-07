@@ -1,3 +1,4 @@
+import { UserstoryService } from './../userstory.service';
 import { UserStory } from './../model/UserStory';
 import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -17,7 +18,7 @@ selectedStory: UserStory;
 
 userStory: UserStory = new UserStory();
 
-constructor() {
+constructor(private userstoryService: UserstoryService) {
 }
 
   ngOnInit() {
@@ -48,6 +49,11 @@ addUserStory( title: string, detail: string) {
 
 OnComplete() {
 }
+
+
+/* getUserStory() {
+ this.userstoryService.getUserStory();
+} */
 
 }
 

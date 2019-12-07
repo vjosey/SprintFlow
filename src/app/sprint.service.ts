@@ -1,5 +1,6 @@
 import { Sprint } from './model/sprint';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 
 @Injectable({
@@ -12,8 +13,10 @@ export class SprintService {
   // TODO: replace with mock data or mock database
   SPRINT: Sprint[];
 
- getSprint(): Sprint[] {
-   return this.SPRINT;
+ getSprints(): Observable<Sprint[]> {
+   // TODO: replace for database
+   return of(this.SPRINT);
  }
+
 
 }
