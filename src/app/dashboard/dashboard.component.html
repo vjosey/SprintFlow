@@ -1,9 +1,11 @@
-<p>dashboard works!</p>
-<h3 id="dashboard">Dashbord</h3>
-<div class="card" style="width: 18rem;">
-  <span>Sprint Name: {{ sprint.name.toUpperCase()}}</span><br>
-  <span>Start date: {{ sprint.startDate }}</span><br>
-  <span>End date: {{ sprint.endDate }}</span><br>
-  <span>Description: {{ sprint.description }}</span><br>
-  <span>Summary: {{ sprint.sprintSummary }}</span><br>
+<h6 id="dashboard">Dashbord</h6>
+<div class="row">
+  <div class="card sprint m-3" style="width: 18rem;" *ngFor="let sprint of sprints">
+      <div class="col">
+        <div id="spring-name" class="row">{{ sprint.name }}</div>
+        <div id="start-date" class="row">{{ sprint.startDate }}</div>
+        <div id="end-date" class="row">{{ sprint.endDate }}</div>
+        <div class="sprint-summary">{{ sprint.sprintSummary }}</div>
+      </div>
+  </div>
 </div>
