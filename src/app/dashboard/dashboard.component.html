@@ -1,33 +1,50 @@
-<head>
-    <title>Dashboard</title>
-</head>
-
-<div class= "col">
-    <div id="activeSprints" class="sprint-chart"> <span class="sprint-status-label">Active Sprints</span>
-        <div class="grid grid-pad">
-            <div *ngIf="sprints">
-                <a *ngFor="let sprint of sprints" [routerLink]="['/sprint-details', sprint.id]" class="col-1-4">
-                    <div class="module hero">
-                        <div>{{sprint.name}}</div>
-                        <div>{{sprint.sprintSummary}}</div>
-                        <div>{{sprint.endDate}}</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+<div class="row w-100">
+    <div class="row my-3">
+        <span class="sprint-status-title">Active Sprints</span>
     </div>
 
-    <div id="pastSprints" class="sprint-chart"><span class="sprint-status-label">Past Sprints</span>
-            <div class="grid grid-pad">
-                <div *ngIf="sprints">
-                    <a *ngFor="let sprint of sprints" [routerLink]="['/sprint-details', sprint.id]" class="col-1-4">
-                        <div class="module hero">
-                            <div>{{sprint.name}}</div>
-                            <div>{{sprint.sprintSummary}}</div>
-                            <div>{{sprint.endDate}}</div>
-                        </div>
-                    </a>
+
+    <div class="row w-100">
+        <div class="col my-3  pt-1" *ngIf="sprints">
+            <div class="row w-100">
+                    <div style="width: 15em;" class="card mx-2" *ngFor="let sprint of activeSprints"
+                    (click)="goTo('/sprint-details', sprint.id)" [routerLink]="['/sprint-details', sprint.id]">
+                    <div class="card-body">
+                        <h5 class="card-title">{{sprint.name}}</h5>
+                        <hr>
+                        <div>{{sprint.sprintSummary}}</div>
+                        <div>{{sprint.endDate}}</div>
+                        <hr>
+                        <div>{{sprint.status}}</div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="col-3 my-3 pt-1">
+            <div style="width: 15em; height: 14em;" class="card mx-2 text-center" (click)="goTo('/sprint-planning', null)" >
+                <h1>+</h1>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <span class="sprint-status-title">Completed Sprints</span>
+    </div>
+
+    <div class="row my-3 w-100 pt-1" *ngIf="sprints">
+        <div style="width: 15em;" class="card mx-2" *ngFor="let sprint of completedSprints"
+            (click)="goTo('/sprint-details', sprint.id)" [routerLink]="['/sprint-details', sprint.id]">
+            <div class="card-body">
+                <h5 class="card-title">{{sprint.name}}</h5>
+                <hr>
+                <div>{{sprint.sprintSummary}}</div>
+                <div>{{sprint.endDate}}</div>
+                <hr>
+                <div>{{sprint.status}}</div>
+            </div>
+        </div>
+    </div>
 </div>

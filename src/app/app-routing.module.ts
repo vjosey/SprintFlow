@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'sprint-planning', component: SprintPlanningComponent},
   { path: 'sprint-review', component: SprintReviewComponent},
   { path: 'sprint-retro', component: SprintRetroComponent},
-  { path: 'sprint-details', component: SprintDetailsComponent}
+  { path: 'sprint-details/:id', component: SprintDetailsComponent}
 ];
 
 @NgModule({
