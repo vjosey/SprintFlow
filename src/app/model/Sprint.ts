@@ -6,8 +6,8 @@ export class Sprint {
   description: string;
   reviewDetails: string;
   retroDetails: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   userStories: UserStory[];
   sprintSummary: string;
   status: string;
