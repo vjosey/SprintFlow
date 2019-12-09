@@ -25,9 +25,9 @@ showUserStoryModalAlert: boolean;
 // Sprint Planning Attributes
 summarySize = 130;
 titleMaxSize = 50;
+storyPointMax = 144;
 priorityInfo = 'Select a priority for User Story.';
 priority = 'Medium';
-
 
 constructor(private sprintService: SprintService, private router: Router) {
 }
@@ -60,12 +60,14 @@ if (this.userStory.title && this.userStory.description) {
     this.userStory.status = this.priority;
   }
 
+  // Set story point to a Fibonacci number
+  this.userStory.storyPoint = this.findFibonacci(this.userStory.storyPoint);
+
+
   // Push User story into the Userstories list, close modal and set User story to new user
   this.stories.push(this.userStory);
   $('#newStoryModal').modal('hide');
   this.userStory = new UserStory();
-
-
 }
 this.setStoryModalAlert(false);
 }
@@ -119,4 +121,64 @@ SetPriorityInfo(priorityType: string)
   this.priority = priorityType;
 }
 
+isPerfectSquare(numA: number): boolean {
+  const sqrt = Math.sqrt(numA);
+  console.log('Perfect Square' + sqrt);
+  return (sqrt * sqrt === numA);
 }
+
+
+checkFibonacci(num: number): boolean {
+  console.log('Fibonacci number' + (5 * (num * num) + 4) + '  ' +(5 * (num * num) - 4));
+  return this.isPerfectSquare(5 * Math.pow(num,2) + 4) || this.isPerfectSquare(5 * Math.pow(num,2) - 4);
+}
+
+
+// Find a better way to get the fibonacci number
+findFibonacci(num: number): number {
+
+if (num > this.storyPointMax) {
+ num = this.storyPointMax;
+}
+
+let t1 = 1;
+let t2 = 0;
+let nextTerm = t1 + t2;
+let fibonacciSeries: number[] = [];
+
+while (nextTerm <= num) {
+  t1 = t2;
+  t2 = nextTerm;
+  nextTerm = t1 + t2;
+  fibonacciSeries.push(nextTerm);
+// If number is a fibonacci just return it
+  if (nextTerm == num) {
+    return num;
+  }
+
+ }
+ // get the last number in the series
+return fibonacciSeries[fibonacciSeries.length - 1 ];
+}
+
+
+getMaxCharCount(max: number, str: string): string {
+
+
+
+if (str !== undefined){
+
+if (str.length > max) {
+  return 'Number of chars: Max ' + max + '/' + str.length + ' Over Max!';
+} else {
+
+  return 'Number of chars: Max ' + max + '/' + str.length;
+}
+
+} else {
+ return 'Number of chars: Max ' + max + '/0';
+}
+
+}
+}
+

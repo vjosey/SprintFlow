@@ -81,10 +81,12 @@
          <!-- Content-->
 
             <div class="form-group form-row">
-              <input [(ngModel)]="userStory.title" name="userStoryInput" type="text" class="form-control" placeholder="Title" required>
+              <input [(ngModel)]="userStory.title" name="userStoryInput" type="text" class="form-control" placeholder="Title" autocapitalize="sentences" required>
             </div>
               <div class="form-group form-row">
-                <textarea [(ngModel)]="userStory.description" name="DesciptionTextarea" class="form-control" required></textarea>
+
+                <textarea [(ngModel)]="userStory.description" name="DesciptionTextarea" class="form-control" maxlength="700" required></textarea>
+                <p>{{ getMaxCharCount(700,userStory.description) }}</p>
               </div>
 
               <hr>
@@ -101,10 +103,8 @@
                 <hr>
 
                 <div class="form-group form-row">
-                    <input [(ngModel)]="userStory.storyPoint" name="storypointInput" type="number" class="form-control" placeholder="StoryPoint">
+                    <input [(ngModel)]="userStory.storyPoint" name="storypointInput" type="number" class="form-control"  min="1" max="{{ storyPointMax }}" placeholder="StoryPoint">
                 </div>
-
-
 
         </div>
         <div class="modal-footer">
@@ -112,14 +112,11 @@
                 A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
               </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="setStoryModalAlert(false)" >Close</button>
-          <button type="button" class="btn btn-primary" (click)="addUserStory()" >Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="addUserStory()">Save changes</button>
         </div>
       </div>
     </div>
   </div>
-
-
-
 
     <!-- Modal -->
     <div  class="modal fade" id="StoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
