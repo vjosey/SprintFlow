@@ -1,11 +1,33 @@
-<h6 id="dashboard">Dashbord</h6>
-<div class="row">
-  <div class="card sprint m-3" style="width: 18rem;" *ngFor="let sprint of sprints">
-      <div class="col">
-        <div id="spring-name" class="row">{{ sprint.name }}</div>
-        <div id="start-date" class="row">{{ sprint.startDate }}</div>
-        <div id="end-date" class="row">{{ sprint.endDate }}</div>
-        <div class="sprint-summary">{{ sprint.sprintSummary }}</div>
-      </div>
-  </div>
+<head>
+    <title>Dashboard</title>
+</head>
+
+<div class= "col">
+    <div id="activeSprints" class="sprint-chart"> <span class="sprint-status-label">Active Sprints</span>
+        <div class="grid grid-pad">
+            <div *ngIf="sprints">
+                <a *ngFor="let sprint of sprints" [routerLink]="['/sprint-details', sprint.id]" class="col-1-4">
+                    <div class="module hero">
+                        <div>{{sprint.name}}</div>
+                        <div>{{sprint.sprintSummary}}</div>
+                        <div>{{sprint.endDate}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="pastSprints" class="sprint-chart"><span class="sprint-status-label">Past Sprints</span>
+            <div class="grid grid-pad">
+                <div *ngIf="sprints">
+                    <a *ngFor="let sprint of sprints" [routerLink]="['/sprint-details', sprint.id]" class="col-1-4">
+                        <div class="module hero">
+                            <div>{{sprint.name}}</div>
+                            <div>{{sprint.sprintSummary}}</div>
+                            <div>{{sprint.endDate}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
 </div>
