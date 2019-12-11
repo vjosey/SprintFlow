@@ -1,0 +1,34 @@
+.sprint-page-title{
+  color:white;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+
+
+.container-fluid {
+  background-color: transparent;
+}
+
+#sprint-date-container {
+  background-color: yellow;
+  float: right;
+}
+
+#sprint-date {
+  background-color: lightsalmon;
+}
+
+#sprint-name {
+  font-weight: bold;
+}
+
+#sprint-time-box {
+  font-weight: bold;
+}
+
+#sprint-summary {
+  font-weight: bold;
+}
+
+
