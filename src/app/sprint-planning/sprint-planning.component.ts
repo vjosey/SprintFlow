@@ -57,8 +57,6 @@ OpenModal() {
 }
 
 
-
-
 // Push New User Story to Array
 addUserStory( ) {
 if (this.userStory.title && this.userStory.description) {

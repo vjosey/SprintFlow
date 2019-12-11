@@ -11,7 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'sprint-board', component: SprintBoardComponent},
+  { path: 'sprint-board/:id', component: SprintBoardComponent},
   { path: 'sprint-planning', component: SprintPlanningComponent},
   { path: 'sprint-review', component: SprintReviewComponent},
   { path: 'sprint-retro', component: SprintRetroComponent},
