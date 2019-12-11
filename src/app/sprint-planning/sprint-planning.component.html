@@ -3,49 +3,75 @@
 </div>
 
 <div class="row">
+<!-- Create a sprint section-->
 <div class="col-5">
 
   <div class="form-group form-row">
-    <input #xknj type="text" class="form-control" id="sprintNameInput" placeholder="Sprint Name">
+    <input [(ngModel)]="sprint.name" type="text" class="form-control" id="sprintNameInput" placeholder="Sprint Name">
   </div>
 
   <div class="form-row">
     <div class="col">
-      <input type="date" class="form-control" placeholder="Start Date">
+      <input [(ngModel)]="sprint.startDate" type="date" class="form-control" placeholder="Start Date">
     </div>
     <div class="col">
-      <input type="date" class="form-control" placeholder="End Date">
+      <input [(ngModel)]="sprint.endDate" type="date" class="form-control" placeholder="End Date">
     </div>
   </div>
-    <div class="form-group form-row">
-        <label for="sprintDesciptionTextarea">Description</label>
-      <textarea class="form-control" id="sprintDesciptionTextarea" rows="3"></textarea>
-    </div>
 
 </div>
 
-<div class="col-5 mr-7">
-    <div class="row">
-        <div class="card p-2 m-3">
-            <h6>Create User Story</h6>
-            <button class="btn btn-primary" type="submit" (click)="OpenModal()">ADD</button>
-            </div>
+<div class="col">
+    <div class="form-group form-row">
+        <label for="sprintDesciptionTextarea">Description</label>
+      <textarea  [(ngModel)]="sprint.description" class="form-control" id="sprintDesciptionTextarea" rows="3"></textarea>
     </div>
 
-  <div class="row">
-      <div *ngFor="let s of stories"   class="card p-2 m-3" (click)="selectedUserStory(s)" >
-          <h6>{{ s.title }}</h6>
-          <p>{{ s.description }}</p>
-          <p></p>
+</div>
+</div>
+
+<div class="row">
+  <!-- Create New User Story Section-->
+  <nav class="navbar navbar-light bg-light w-100 mb-4">
+    <div class="row w-100">
+        <div class="col-4">  <h6>Create User Story</h6></div>
+        <div class="col-5"></div>
+        <div class="col-3">
+        <button class="btn btn-primary btn-sm" type="button" (click)="OpenModal()">ADD</button>
+        <button class="btn btn-primary btn-sm mx-1" type="submit"  (click)="OnComplete()">COMPLETE</button>
+        </div>
+    </div>
+  </nav>
+
+  <div class="row w-100 justify-content-center">
+      <div *ngFor="let s of stories"  class="card m-3" style="width: 15em; height: 16em;" (click)="selectedUserStory(s)" >
+
+          <div class="card-body">
+          <h6 class="card-title" >{{ s.title }}</h6>
+          <hr>
+
+           <p class="card-text">{{ s.summary }}</p>
+         </div>
+
+
+
+        <div class="card-footer bg-transparent">
+          <span class="{{SetPriorityColor(s.priority)}}">{{ s.priority }} </span>
+          <span class="badge badge-secondary ml-2">{{ s.storyPoint }}</span>
+        </div>
+
           </div>
   </div>
 
 
 </div>
 
-    <button class="btn btn-primary" type="submit"  [routerLink]="['/sprint-board']"  >Completed</button>
+<!-- Complete planning button-->
+<div class="row">
+    <button class="btn btn-primary" type="submit"  (click)="OnComplete()"  >COMPLETE</button>
+  </div>
 
-  <!-- Modal -->
+  <!-- New Story Modal -->
   <div class="modal fade" id="newStoryModal" tabindex="-1" role="dialog" aria-labelledby="newStoryModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -59,26 +85,43 @@
          <!-- Content-->
 
             <div class="form-group form-row">
-              <input  #newStoryTitle name="userStoryInput" type="text" class="form-control" placeholder="Story Title">
+              <input [(ngModel)]="userStory.title" name="userStoryInput" type="text" class="form-control" placeholder="Title" autocapitalize="sentences" required>
             </div>
               <div class="form-group form-row">
 
-                <textarea #newStoryDetail name="DesciptionTextarea" class="form-control"></textarea>
+                <textarea [(ngModel)]="userStory.description" name="DesciptionTextarea" class="form-control" maxlength="700" required></textarea>
+                <p>{{ getMaxCharCount(700,userStory.description) }}</p>
               </div>
 
+              <hr>
+              <h6>Priority</h6>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary" (click)="SetPriorityInfo('Lowest')">Lowest</button>
+                  <button type="button" class="btn btn-success"  (click)="SetPriorityInfo('Low')">Low</button>
+                  <button type="button" class="btn btn-info"  (click)="SetPriorityInfo('Medium')">Medium</button>
+                  <button type="button" class="btn btn-warning" (click)="SetPriorityInfo('High')">High</button>
+                  <button type="button" class="btn btn-danger" (click)="SetPriorityInfo('Highest')" >Highest</button>
+                </div>
 
+                <p>{{ priorityInfo }}</p>
+                <hr>
+
+                <div class="form-group form-row">
+                    <input [(ngModel)]="userStory.storyPoint" name="storypointInput" type="number" class="form-control"  min="1" max="{{ storyPointMax }}" placeholder="StoryPoint">
+                    <p>Number will be convert into a Fibonacci number. Max: {{storyPointMax}}</p><p *ngIf="userStory.storyPoint" >  Storypoint: {{ findFibonacci(userStory.storyPoint) }}</p>
+                </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="addUserStory(newStoryTitle.value, newStoryDetail.value)" >Save changes</button>
+            <div *ngIf="showUserStoryModalAlert"  class="alert alert-danger" role="alert">
+                A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="setStoryModalAlert(false)" >Close</button>
+          <button type="button" class="btn btn-primary" (click)="addUserStory()">Save changes</button>
         </div>
       </div>
     </div>
   </div>
-
-
-
 
     <!-- Modal -->
     <div  class="modal fade" id="StoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -90,17 +133,64 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div *ngIf="selectedStory" class="modal-body">
+
+
              <!-- Content-->
-             {{ selectedStory.detail }}
+             <div *ngIf="!editSelectedStory; else editStory" >
+                {{ selectedStory.description }}
+                <hr>
+                <span class="{{SetPriorityColor(selectedStory.priority)}}">{{ selectedStory.priority }} </span>
+                <span class="badge badge-secondary ml-2">{{ selectedStory.storyPoint }}</span>
+             </div>
+
+             <!-- Edit Content -->
+             <ng-template #editStory>
+
+               <div class="form-group form-row">
+                  <input [(ngModel)]="selectedStory.title" name="userStoryInput" type="text" class="form-control" placeholder="selectedStory.title" autocapitalize="sentences" required>
+               </div>
+
+                  <div class="form-group form-row">
+                    <textarea [(ngModel)]="selectedStory.description" name="DesciptionTextarea" class="form-control" maxlength="700" required></textarea>
+                    <p>{{ getMaxCharCount(700,selectedStory.description) }}</p>
+                  </div>
+
+                  <hr>
+                  <h6>Priority </h6>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-primary" (click)="SetPriorityInfo('Lowest')">Lowest</button>
+                      <button type="button" class="btn btn-success"  (click)="SetPriorityInfo('Low')">Low</button>
+                      <button type="button" class="btn btn-info"  (click)="SetPriorityInfo('Medium')">Medium</button>
+                      <button type="button" class="btn btn-warning" (click)="SetPriorityInfo('High')">High</button>
+                      <button type="button" class="btn btn-danger" (click)="SetPriorityInfo('Highest')" >Highest</button>
+                   </div>
+
+                    <p>{{ priorityInfo }}</p>
+                    <hr>
+
+                    <div class="form-group form-row">
+                        <input [(ngModel)]="selectedStory.storyPoint" name="storypointInput" type="number" class="form-control"  min="1" max="{{ storyPointMax }}" placeholder="StoryPoint">
+                        <p>Number will be convert into a Fibonacci number. Max: {{storyPointMax}}</p><p *ngIf="selectedStory.storyPoint" >  Storypoint: {{ findFibonacci(selectedStory.storyPoint) }}</p>
+                    </div>
+
+             </ng-template>
+
+
 
             </div>
+
             <div class="modal-footer">
+              <button *ngIf="!editSelectedStory"   type="button" class="btn btn-info" (click)="setEditStateOnSelectedStory(true)" >Edit</button>
+              <button *ngIf="editSelectedStory"   type="button" class="btn btn-info" (click)="updateUserStory(false)" >Save</button>
+              <button type="button" class="btn btn-secondary" (click)="RemoveSelectedUserStory()" >Delete</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" (click)="saveNewUserStory()" >Save changes</button>
+              <button type="button" class="btn btn-primary" (click)="updateUserStory(true)">Save & Close</button>
             </div>
           </div>
         </div>
+
       </div>
 
 

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { UserStory } from './model/UserStory';
+=======
+import { UserstoryService } from './userstory.service';
+>>>>>>> ee312916ed0b74ef6bde4a6b31fa2045ee57b15e
 import { Sprint } from './model/sprint';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -11,6 +15,7 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class SprintService {
+
 
 
   constructor(private messageService: MessageService) { }
@@ -28,6 +33,11 @@ export class SprintService {
 
 
 
+
+
+ addSprint(sprint: Sprint): void {
+   SPRINTS.push(sprint);
+ }
 
 
 }
