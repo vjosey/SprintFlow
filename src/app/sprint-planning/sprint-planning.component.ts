@@ -17,17 +17,21 @@ export class SprintPlanningComponent implements OnInit {
 sprint: Sprint = new Sprint();
 
 // User Story
-stories: UserStory[] = [];
+stories: UserStory[] = []; // User stories created for this sprint
+
 selectedStory: UserStory;
+selectedStoryIndex: number;
+editSelectedStory = false;
 userStory: UserStory = new UserStory();
 showUserStoryModalAlert: boolean;
 
 // Sprint Planning Attributes
-summarySize = 130;
+summarySize = 110;
 titleMaxSize = 50;
 storyPointMax = 144;
 priorityInfo = 'Select a priority for User Story.';
 priority = 'Medium';
+// priorityColor = 'badge badge-primary';
 
 constructor(private sprintService: SprintService, private router: Router) {
 }
@@ -37,14 +41,23 @@ constructor(private sprintService: SprintService, private router: Router) {
 
 selectedUserStory(story: UserStory) {
  this.selectedStory = story;
+ // save the in
  $('#StoryModal').modal('show');
 }
+
+RemoveSelectedUserStory() {
+ console.log(this.stories.indexOf(this.selectedStory));
+ this.stories.splice(this.stories.indexOf(this.selectedStory), 1);
+ $('#StoryModal').modal('hide');
+ }
 
 OpenModal() {
   // alert( 'hello' );
   $('#newStoryModal').modal('show');
-
 }
+
+
+
 
 // Push New User Story to Array
 addUserStory( ) {
@@ -72,6 +85,21 @@ if (this.userStory.title && this.userStory.description) {
 this.setStoryModalAlert(false);
 }
 
+updateUserStory(close: boolean) {
+  if (this.selectedStory) {
+    this.setSeletedStoryPriority(this.priority);
+    this.selectedStory.summary = this.selectedStory.description.substr(0, this.summarySize);
+  }
+
+  console.log(this.stories);
+// Close modal box once done
+  if (close) {
+    $('#StoryModal').modal('hide');
+  }
+
+  this.setEditStateOnSelectedStory(false);
+
+}
 setStoryModalAlert(t: boolean) {
   this.showUserStoryModalAlert = t;
 }
@@ -121,18 +149,6 @@ SetPriorityInfo(priorityType: string)
   this.priority = priorityType;
 }
 
-isPerfectSquare(numA: number): boolean {
-  const sqrt = Math.sqrt(numA);
-  console.log('Perfect Square' + sqrt);
-  return (sqrt * sqrt === numA);
-}
-
-
-checkFibonacci(num: number): boolean {
-  console.log('Fibonacci number' + (5 * (num * num) + 4) + '  ' +(5 * (num * num) - 4));
-  return this.isPerfectSquare(5 * Math.pow(num,2) + 4) || this.isPerfectSquare(5 * Math.pow(num,2) - 4);
-}
-
 
 // Find a better way to get the fibonacci number
 findFibonacci(num: number): number {
@@ -164,8 +180,6 @@ return fibonacciSeries[fibonacciSeries.length - 1 ];
 
 getMaxCharCount(max: number, str: string): string {
 
-
-
 if (str !== undefined){
 
 if (str.length > max) {
@@ -180,5 +194,37 @@ if (str.length > max) {
 }
 
 }
+
+
+setEditStateOnSelectedStory(bool: boolean) {
+this.editSelectedStory = bool;
+}
+
+SetPriorityColor(priorityType: string): string
+{
+
+  console.log(priorityType);
+  switch (priorityType) {
+    case 'Lowest':
+     return 'badge badge-primary';
+    case 'Low':
+      return 'badge badge-success';
+    case 'Medium':
+      return 'badge badge-info';
+    case 'High':
+      return 'badge badge-warning';
+    case 'Highest':
+      return 'badge badge-danger';
+    default:
+      return 'badge badge-primary';
+  }
+
+}
+
+setSeletedStoryPriority(str: string) {
+  this.selectedStory.status = str;
+}
+
+
 }
 

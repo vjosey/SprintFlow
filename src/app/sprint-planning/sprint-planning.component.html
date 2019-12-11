@@ -48,12 +48,16 @@
 
           <div class="card-body">
           <h6 class="card-title" >{{ s.title }}</h6>
+          <hr>
 
-           <p class="card-text">{{ s.summary}}</p>
+           <p class="card-text">{{ s.summary }}</p>
          </div>
 
-        <div class="card-footer bg-transparent">
 
+
+        <div class="card-footer bg-transparent">
+          <span class="{{SetPriorityColor(s.status)}}">{{ s.status }} </span>
+          <span class="badge badge-secondary ml-2">{{ s.storyPoint }}</span>
         </div>
 
           </div>
@@ -104,6 +108,7 @@
 
                 <div class="form-group form-row">
                     <input [(ngModel)]="userStory.storyPoint" name="storypointInput" type="number" class="form-control"  min="1" max="{{ storyPointMax }}" placeholder="StoryPoint">
+                    <p>Number will be convert into a Fibonacci number. Max: {{storyPointMax}}</p><p *ngIf="userStory.storyPoint" >  Storypoint: {{ findFibonacci(userStory.storyPoint) }}</p>
                 </div>
 
         </div>
@@ -128,15 +133,60 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div *ngIf="selectedStory" class="modal-body">
+
+
              <!-- Content-->
-             {{ selectedStory.description }}
+             <div *ngIf="!editSelectedStory; else editStory" >
+                {{ selectedStory.description }}
+                <hr>
+                <span class="{{SetPriorityColor(selectedStory.status)}}">{{ selectedStory.status }} </span>
+                <span class="badge badge-secondary ml-2">{{ selectedStory.storyPoint }}</span>
+             </div>
+
+             <!-- Edit Content -->
+             <ng-template #editStory>
+
+               <div class="form-group form-row">
+                  <input [(ngModel)]="selectedStory.title" name="userStoryInput" type="text" class="form-control" placeholder="selectedStory.title" autocapitalize="sentences" required>
+               </div>
+
+                  <div class="form-group form-row">
+                    <textarea [(ngModel)]="selectedStory.description" name="DesciptionTextarea" class="form-control" maxlength="700" required></textarea>
+                    <p>{{ getMaxCharCount(700,selectedStory.description) }}</p>
+                  </div>
+
+                  <hr>
+                  <h6>Priority </h6>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-primary" (click)="SetPriorityInfo('Lowest')">Lowest</button>
+                      <button type="button" class="btn btn-success"  (click)="SetPriorityInfo('Low')">Low</button>
+                      <button type="button" class="btn btn-info"  (click)="SetPriorityInfo('Medium')">Medium</button>
+                      <button type="button" class="btn btn-warning" (click)="SetPriorityInfo('High')">High</button>
+                      <button type="button" class="btn btn-danger" (click)="SetPriorityInfo('Highest')" >Highest</button>
+                   </div>
+
+                    <p>{{ priorityInfo }}</p>
+                    <hr>
+
+                    <div class="form-group form-row">
+                        <input [(ngModel)]="selectedStory.storyPoint" name="storypointInput" type="number" class="form-control"  min="1" max="{{ storyPointMax }}" placeholder="StoryPoint">
+                        <p>Number will be convert into a Fibonacci number. Max: {{storyPointMax}}</p><p *ngIf="selectedStory.storyPoint" >  Storypoint: {{ findFibonacci(selectedStory.storyPoint) }}</p>
+                    </div>
+
+             </ng-template>
+
+
 
             </div>
+
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>
+              <button *ngIf="!editSelectedStory"   type="button" class="btn btn-info" (click)="setEditStateOnSelectedStory(true)" >Edit</button>
+              <button *ngIf="editSelectedStory"   type="button" class="btn btn-info" (click)="updateUserStory(false)" >Save</button>
+              <button type="button" class="btn btn-secondary" (click)="RemoveSelectedUserStory()" >Delete</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" (click)="addUserStory()">Save changes</button>
+              <button type="button" class="btn btn-primary" (click)="updateUserStory(true)">Save & Close</button>
             </div>
           </div>
         </div>
