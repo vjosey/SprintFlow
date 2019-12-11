@@ -1,38 +1,58 @@
 <div class="container-fluid">
-   <h3 id="title" class="sprint-page-title">Overview</h3>
-    <div class="row">
-      <div id="sprint-details" class="col-sm-3 col-md-6 col-lg-4 mr-4">
-        <div id="sprint-name" style="color: white;">Sprint name: {{ chosenSprint.name }}</div>
-        <div id="sprint-time-box" class="row" style="color: white;">
-          <div id="sprint-start-date" class="ml-3" style="color: white;">Timebox: {{ chosenSprint.startDate }}</div> -
-          <div id="sprint-end-date" class="mb-2" style="color: white;">{{ chosenSprint.endDate }}</div>
+  <h3 id="title" class="sprint-page-title">Overview</h3>
+  <div class="row">
+    <div id="sprint-details" class="col-sm-3 col-md-6 col-lg-4 mr-4">
+      <div id="sprint-name" style="color: white;">
+        Sprint name: {{ chosenSprint.name }}
+      </div>
+      <div id="sprint-time-box" class="row" style="color: white;">
+        <div id="sprint-start-date" class="ml-3" style="color: white;">
+          Timebox: {{ chosenSprint.startDate }}
         </div>
-        <div id="sprint-summary" class="mt-10" style="color: white;">Sprint Summary: {{ chosenSprint.sprintSummary }}</div>
+        -
+        <div id="sprint-end-date" class="mb-2" style="color: white;">
+          {{ chosenSprint.endDate }}
+        </div>
+      </div>
+      <div id="sprint-summary" class="mt-10" style="color: white;">
+        Sprint Summary: {{ chosenSprint.sprintSummary }}
+      </div>
     </div>
 
-    <div class="col-sm-9 col-md-6 col-lg-6 ml-4" style="background-color: yellowgreen;">
+    <div
+      class="col-sm-9 col-md-6 col-lg-6 ml-4"
+      style="background-color: yellowgreen;"
+    >
       <div id="sprint-date-container" style="color: white;">
         <p id="sprint-date">{{ chosenSprint.endDate }}</p>
       </div>
-      <div id="sprint-userstories" class="row w-100" >
-          <div class="row">
-              <div *ngFor="let s of chosenSprint.userStories"  class="card m-3" style="width: 15em; height: 16em;" >
-                  <div class="card-body">
-                  <h6 class="card-title" >{{ s.title }}</h6>
-                  <hr>
-                   <p class="card-text">{{ s.description }}</p>
-                 </div>
-                <div class="card-footer bg-transparent">
-                  <span class="{{SetPriorityColor(s.priority)}}">{{ s.priority }} </span>
-                  <span class="badge badge-secondary ml-2">{{ s.storyPoint }}</span>
-                </div>
-                  </div>
+      <div id="sprint-userstories" class="row w-100">
+        <div class="row">
+          <div
+            *ngFor="let s of chosenSprint.userStories"
+            class="card m-3"
+            style="width: 35.5em; height: 10em;"
+          >
+            <div class="card-body">
+              <h6 class="card-title">{{ s.title }}</h6>
+              <hr />
+              <p class="card-text">{{ s.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <span class="{{ SetPriorityColor(s.priority) }}"
+                >{{ s.priority }}
+              </span>
+              <span class="badge badge-secondary ml-2">{{ s.storyPoint }}</span>
+            </div>
           </div>
+        </div>
       </div>
     </div>
-</div>
+  </div>
 
-<div class="text-center">
-    <button class="btn btn-primary w-50 m-5" (click)="nextActivity()">Continue</button>
+  <div class="text-center">
+    <button class="btn btn-primary w-50 m-5" (click)="nextActivity()">
+      Continue
+    </button>
+  </div>
 </div>
-

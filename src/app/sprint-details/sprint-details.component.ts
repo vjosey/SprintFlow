@@ -1,3 +1,4 @@
+import { UserStory } from './../model/UserStory';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SprintService } from './../sprint.service';
@@ -12,6 +13,8 @@ import { Location } from '@angular/common';
 })
 export class SprintDetailsComponent implements OnInit {
   chosenSprint: Sprint; // The sprint that was selected on the dashboard page.
+  completedUserStories: UserStory[];
+  activeUserStores: UserStory[];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +28,7 @@ export class SprintDetailsComponent implements OnInit {
     * grab that specific sprint's object
     */
     this.getSprint();
+    this.sortUserStores(this.chosenSprint.userStories);
 
   }
 
@@ -56,7 +60,23 @@ export class SprintDetailsComponent implements OnInit {
   }
 
   /*
-  * Takes you to another page based on the current sprint's active status.
+  * This will sort out the userstories into two separate arrays one for completed
+  * and another for active userstories that have not yet been deployed.
+  */
+  sortUserStores(userstories: UserStory[]) {
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < userstories.length; index++) {
+      if (userstories[index].status.toLowerCase() !== 'completed') {
+        this.activeUserStores.push(userstories[index]);
+      } else {
+        this.completedUserStories.push(userstories[index]);
+      }
+    }
+  }
+
+  /*
+  * When user clicks on button on html page this takes you to another page
+  * based on the current sprint's active status.
   */
   nextActivity(): void {
     /*

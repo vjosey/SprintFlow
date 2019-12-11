@@ -14,7 +14,8 @@ export const SPRINTS: Sprint[] = [
         id: 1,
         title: 'User Story',
         description: 'User story 1',
-        priority: 3,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1', 'comment 2'],
         storyPoint: 3,
         status: 'TODO',
@@ -24,7 +25,8 @@ export const SPRINTS: Sprint[] = [
         id: 2,
         title: 'User Story',
         description: 'User story 2',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1', 'comment 2', 'comment 3'],
         storyPoint: 15,
         status: 'TODO',
@@ -32,7 +34,7 @@ export const SPRINTS: Sprint[] = [
       }
     ],
     sprintSummary: 'We are collection feedback from stalkholders',
-    status: 'ACTIVE'
+    status: 'Working'
   },
 
   {
@@ -48,7 +50,8 @@ export const SPRINTS: Sprint[] = [
         id: 3,
         title: 'User Story',
         description: 'User story 1',
-        priority: 5,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
         status: 'TODO',
@@ -58,7 +61,8 @@ export const SPRINTS: Sprint[] = [
         id: 4,
         title: 'User Story',
         description: 'User story 2',
-        priority: 2,
+        summary: '',
+        priority: 'Low',
         comments: [],
         storyPoint: 3,
         status: 'TODO',
@@ -68,7 +72,8 @@ export const SPRINTS: Sprint[] = [
         id: 5,
         title: 'User Story',
         description: 'User story 3',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: [
           'comment 1',
           'comment 2',
@@ -82,7 +87,7 @@ export const SPRINTS: Sprint[] = [
       }
     ],
     sprintSummary: 'adipisci velit, sed quia non numqua incidunt',
-    status: 'ACTIVE'
+    status: 'Working'
   },
 
   {
@@ -98,7 +103,8 @@ export const SPRINTS: Sprint[] = [
         id: 6,
         title: 'User Story',
         description: 'User story 1',
-        priority: 5,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
         status: 'TODO',
@@ -108,7 +114,8 @@ export const SPRINTS: Sprint[] = [
         id: 7,
         title: 'User Story',
         description: 'User story 2',
-        priority: 2,
+        summary: '',
+        priority: 'Low',
         comments: [],
         storyPoint: 3,
         status: 'TODO',
@@ -118,7 +125,8 @@ export const SPRINTS: Sprint[] = [
         id: 8,
         title: 'User Story',
         description: 'User story 3',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: [
           'comment 1',
           'comment 2',
@@ -127,12 +135,12 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'TODO',
+        status: 'completed',
         sprintId: 3
       }
     ],
     sprintSummary: 'adipisci velit, sed quia non numqua incidunt',
-    status: 'ACTIVE'
+    status: 'Working'
   },
 
   {
@@ -148,17 +156,19 @@ export const SPRINTS: Sprint[] = [
         id: 9,
         title: 'User Story',
         description: 'User story 3',
-        priority: 5,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
-        status: 'TODO',
+        status: 'completed',
         sprintId: 4
       },
       {
         id: 10,
         title: 'User Story',
         description: 'User story 4',
-        priority: 2,
+        summary: '',
+        priority: 'Low',
         comments: [],
         storyPoint: 3,
         status: 'TODO',
@@ -169,7 +179,8 @@ export const SPRINTS: Sprint[] = [
         id: 11,
         title: 'User Story',
         description: 'User story 5',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: [
           'comment 1',
           'comment 2',
@@ -178,7 +189,7 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'TODO',
+        status: 'completed',
         sprintId: 4
       }
     ],
@@ -199,17 +210,19 @@ export const SPRINTS: Sprint[] = [
         id: 12,
         title: 'User Story',
         description: 'User story 3',
-        priority: 5,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
-        status: 'TODO',
+        status: 'completed',
         sprintId: 5
       },
       {
         id: 13,
         title: 'User Story',
         description: 'User story 4',
-        priority: 2,
+        summary: '',
+        priority: 'Low',
         comments: [],
         storyPoint: 3,
         status: 'TODO',
@@ -219,7 +232,8 @@ export const SPRINTS: Sprint[] = [
         id: 14,
         title: 'User Story',
         description: 'User story 5',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: [
           'comment 1',
           'comment 2',
@@ -228,7 +242,7 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'TODO',
+        status: 'completed',
         sprintId: 5
       }
     ],
@@ -248,7 +262,8 @@ export const SPRINTS: Sprint[] = [
         id: 15,
         title: 'User Story',
         description: 'User story 3',
-        priority: 5,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
         status: 'TODO',
@@ -258,7 +273,8 @@ export const SPRINTS: Sprint[] = [
         id: 16,
         title: 'User Story',
         description: 'User story 4',
-        priority: 2,
+        summary: '',
+        priority: 'Low',
         comments: [],
         storyPoint: 3,
         status: 'TODO',
@@ -268,7 +284,8 @@ export const SPRINTS: Sprint[] = [
         id: 17,
         title: 'User Story',
         description: 'User story 5',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: [
           'comment 1',
           'comment 2',
@@ -277,7 +294,7 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'TODO',
+        status: 'completed',
         sprintId: 6
       }
     ],
@@ -298,7 +315,8 @@ export const SPRINTS: Sprint[] = [
         id: 18,
         title: 'User Story',
         description: 'User story 3',
-        priority: 5,
+        summary: '',
+        priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
         status: 'TODO',
@@ -308,17 +326,19 @@ export const SPRINTS: Sprint[] = [
         id: 19,
         title: 'User Story',
         description: 'User story 4',
-        priority: 2,
+        summary: '',
+        priority: 'Low',
         comments: [],
         storyPoint: 3,
-        status: 'TODO',
+        status: 'Completed',
         sprintId: 7
       },
       {
         id: 20,
         title: 'User Story',
         description: 'User story 5',
-        priority: 1,
+        summary: '',
+        priority: 'Low',
         comments: [
           'comment 1',
           'comment 2',
