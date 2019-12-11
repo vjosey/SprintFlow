@@ -3,7 +3,7 @@ export class UserStory {
   title: string;
   description: string;
   summary: string;
-  priority: number;
+  priority: string;
   comments: string[];
   storyPoint: number;
   status: string;

@@ -68,9 +68,9 @@ if (this.userStory.title && this.userStory.description) {
   this.userStory.title = this.userStory.title.substr(0, this.titleMaxSize);
 
   if (this.priority == null) {
-    this.userStory.status = 'Medium';
+    this.userStory.priority = 'Medium';
   } else {
-    this.userStory.status = this.priority;
+    this.userStory.priority = this.priority;
   }
 
   // Set story point to a Fibonacci number
@@ -100,6 +100,7 @@ updateUserStory(close: boolean) {
   this.setEditStateOnSelectedStory(false);
 
 }
+
 setStoryModalAlert(t: boolean) {
   this.showUserStoryModalAlert = t;
 }
@@ -108,6 +109,7 @@ addSprint() {
   // Assign User stories to Sprint
   if (this.stories.length) {
     this.sprint.userStories = this.stories;
+    this.sprint.status = 'Active';
   }
 
   this.sprint.sprintSummary = this.sprint.description;
@@ -222,7 +224,7 @@ SetPriorityColor(priorityType: string): string
 }
 
 setSeletedStoryPriority(str: string) {
-  this.selectedStory.status = str;
+  this.selectedStory.priority = str;
 }
 
 

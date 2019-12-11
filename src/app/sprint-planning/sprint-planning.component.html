@@ -56,7 +56,7 @@
 
 
         <div class="card-footer bg-transparent">
-          <span class="{{SetPriorityColor(s.status)}}">{{ s.status }} </span>
+          <span class="{{SetPriorityColor(s.priority)}}">{{ s.priority }} </span>
           <span class="badge badge-secondary ml-2">{{ s.storyPoint }}</span>
         </div>
 
@@ -141,7 +141,7 @@
              <div *ngIf="!editSelectedStory; else editStory" >
                 {{ selectedStory.description }}
                 <hr>
-                <span class="{{SetPriorityColor(selectedStory.status)}}">{{ selectedStory.status }} </span>
+                <span class="{{SetPriorityColor(selectedStory.priority)}}">{{ selectedStory.priority }} </span>
                 <span class="badge badge-secondary ml-2">{{ selectedStory.storyPoint }}</span>
              </div>
 
