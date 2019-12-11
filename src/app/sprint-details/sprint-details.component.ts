@@ -28,7 +28,7 @@ export class SprintDetailsComponent implements OnInit {
     * grab that specific sprint's object
     */
     this.getSprint();
-    this.sortUserStores(this.chosenSprint.userStories);
+    // this.sortUserStores(this.chosenSprint.userStories);
 
   }
 
