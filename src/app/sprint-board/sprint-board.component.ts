@@ -26,7 +26,7 @@ chosenSprint: Sprint = new Sprint();
 
   ngOnInit(): void {
     /*
-    * Based on the sprint that was selected on the dashboard page, it will call the service class to
+    * Based on the sprint that was selected on the  page, it will call the service class to
     * grab that specific sprint's object
     */
     this.getSprint();

@@ -26,7 +26,16 @@ export class SprintService {
   }
 
  addSprint(sprint: Sprint): void {
-   SPRINTS.push(sprint);
+  // create a new id for new sprint.
+  // This should be done from the database in the future
+  sprint.id = SPRINTS.length + 1;
+  console.log(sprint.id);
+  SPRINTS.push(sprint);
+ }
+
+ updateSprint(sprint: Sprint): void  {
+ // TODO: Update sprint in database
+
  }
 
 }
