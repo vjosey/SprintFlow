@@ -21,10 +21,8 @@ chosenSprint: Sprint = new Sprint();
 
   constructor(
     private route: ActivatedRoute,
-    private sprintService: SprintService,
-    private location: Location
+    private sprintService: SprintService
   ) { }
-
 
   ngOnInit(): void {
     /*
@@ -34,13 +32,12 @@ chosenSprint: Sprint = new Sprint();
     this.getSprint();
     this.sortUserStores(this.chosenSprint.userStories);
   }
+
   getSprint(): void {
     // Grabs a sprint based on the sprint id in order to display it's information to the user
     const id = +this.route.snapshot.paramMap.get('id');
     this.sprintService.getSprintById(id).subscribe(sprint => this.chosenSprint = sprint);
   }
-
-
 
 sortUserStores(stories: UserStory[]) {
 stories.forEach(story => {
@@ -49,8 +46,7 @@ stories.forEach(story => {
 }
 
 addToGroup(story: UserStory) {
-
-  switch(story.status) {
+  switch (story.status) {
     case 'TODO':
       this.toDo.push(story);
       break;
@@ -64,6 +60,62 @@ addToGroup(story: UserStory) {
                   this.depoly.push(story);
                   break;
   }
+}
+
+SetPriorityColor(priorityType: string): string
+{
+
+  // console.log(priorityType);
+  switch (priorityType) {
+    case 'Lowest':
+     return 'badge badge-primary';
+    case 'Low':
+      return 'badge badge-success';
+    case 'Medium':
+      return 'badge badge-info';
+    case 'High':
+      return 'badge badge-warning';
+    case 'Highest':
+      return 'badge badge-danger';
+    default:
+      return 'badge badge-primary';
+  }
+
+}
+
+checkStoryStatus() {
+
+  if (this.toDo.length > 0) {
+    this.toDo.forEach(story => {
+         if (story.status !== 'TODO') {
+          story.status = 'TODO';
+          }
+    });
+  }
+
+  if (this.doing.length > 0) {
+    this.doing.forEach(story => {
+         if (story.status !== 'DOING') {
+          story.status = 'DOING';
+          }
+    });
+  }
+
+  if (this.toReview.length > 0) {
+    this.toReview.forEach(story => {
+         if (story.status !== 'TOREVIEW') {
+          story.status = 'TOREVIEW';
+          }
+    });
+  }
+  if (this.depoly.length > 0) {
+    this.depoly.forEach(story => {
+         if (story.status !== 'DEPOLY') {
+          story.status = 'DEPOLY';
+          }
+    });
+  }
+
 
 }
 
@@ -75,6 +127,7 @@ addToGroup(story: UserStory) {
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
+      this.checkStoryStatus();
     }
   }
 

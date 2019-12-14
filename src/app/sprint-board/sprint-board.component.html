@@ -1,28 +1,101 @@
 <p>sprint-board works!</p>
-
-<div cdkDropListGroup>
-  <div class="example-container">
-    <h2>To do</h2>
+<div class="board">
+<div cdkDropListGroup class="board-wrapper">
+  <div class="board-column">
+  <div class="board-container">
+    <h5>To do</h5>
 
     <div
       cdkDropList
       [cdkDropListData]="toDo"
-      class="example-list"
+      class="board-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of toDo" cdkDrag>{{item}}</div>
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toDo" cdkDrag>
+
+        <div class="card-body">
+          <h6 class="card-title" >{{ item.title }}</h6>
+         </div>
+
+        <div class="card-footer bg-transparent">
+          <span class="{{SetPriorityColor(item.priority)}}">{{ item.priority }} </span>
+          <span class="badge badge-secondary ml-2">{{ item.storyPoint }}</span>
+          <span class="badge badge-secondary ml-2">{{ item.status }}</span>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <div class="example-container">
-    <h2>Done</h2>
+  <div class="board-container">
+    <h5>Doing</h5>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="doing"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of doing" cdkDrag>
+        <div class="card-body">
+          <h6 class="card-title" >{{ item.title }}</h6>
+         </div>
+
+        <div class="card-footer bg-transparent">
+          <span class="{{SetPriorityColor(item.priority)}}">{{ item.priority }} </span>
+          <span class="badge badge-secondary ml-2">{{ item.storyPoint }}</span>
+          <span class="badge badge-secondary ml-2">{{ item.status }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="board-container">
+    <h5>To Review</h5>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="toReview"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toReview" cdkDrag>
+        <div class="card-body">
+          <h6 class="card-title" >{{ item.title }}</h6>
+         </div>
+
+        <div class="card-footer bg-transparent">
+          <span class="{{SetPriorityColor(item.priority)}}">{{ item.priority }} </span>
+          <span class="badge badge-secondary ml-2">{{ item.storyPoint }}</span>
+          <span class="badge badge-secondary ml-2">{{ item.status }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="board-container">
+    <h5>Done</h5>
 
     <div
       cdkDropList
       [cdkDropListData]="depoly"
-      class="example-list"
+      class="board-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of depoly" cdkDrag>{{item}}</div>
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of depoly" cdkDrag>
+        <div class="card-body">
+          <h6 class="card-title" >{{ item.title }}</h6>
+         </div>
+
+        <div class="card-footer bg-transparent">
+          <span class="{{SetPriorityColor(item.priority)}}">{{ item.priority }} </span>
+          <span class="badge badge-secondary ml-2">{{ item.storyPoint }}</span>
+          <span class="badge badge-secondary ml-2">{{ item.status }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
+</div>
+</div>

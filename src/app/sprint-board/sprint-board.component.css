@@ -1,18 +1,19 @@
-.example-container {
-  width: 400px;
+.board-container {
+  width: 300px;
   max-width: 100%;
   margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
 }
 
-.example-list {
+.board-list {
   border: solid 1px #ccc;
-  min-height: 60px;
-  background: white;
+  min-height: 600px;
+  background: #ececec;
   border-radius: 4px;
   overflow: hidden;
   display: block;
+
 }
 
 .example-box {
@@ -52,3 +53,24 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.board {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+  .board-wrapper {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: auto;
+
+  }
+  .board-column {
+    display: flex;
+    flex-grow: 1;
+
+
+  }
