@@ -13,8 +13,8 @@ import { Location } from '@angular/common';
 })
 export class SprintDetailsComponent implements OnInit {
   chosenSprint: Sprint; // The sprint that was selected on the dashboard page.
-  completedUserStories: UserStory[];
-  activeUserStores: UserStory[];
+  completedUserStories: UserStory[] = [];
+  activeUserStores: UserStory[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +28,7 @@ export class SprintDetailsComponent implements OnInit {
     * grab that specific sprint's object
     */
     this.getSprint();
-    // this.sortUserStores(this.chosenSprint.userStories);
+    this.sortUserStores(this.chosenSprint);
 
   }
 
@@ -63,13 +63,13 @@ export class SprintDetailsComponent implements OnInit {
   * This will sort out the userstories into two separate arrays one for completed
   * and another for active userstories that have not yet been deployed.
   */
-  sortUserStores(userstories: UserStory[]) {
+  sortUserStores(sprint: Sprint) {
     // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < userstories.length; index++) {
-      if (userstories[index].status.toLowerCase() !== 'completed') {
-        this.activeUserStores.push(userstories[index]);
+    for (let index = 0; index < sprint.userStories.length ; index++) {
+      if (sprint.userStories[index].status.toLowerCase() !== 'deploy') {
+          this.activeUserStores.push(sprint.userStories[index]);
       } else {
-        this.completedUserStories.push(userstories[index]);
+        this.completedUserStories.push(sprint.userStories[index]);
       }
     }
   }

@@ -34,7 +34,7 @@ export const SPRINTS: Sprint[] = [
       }
     ],
     sprintSummary: 'We are collection feedback from stalkholders',
-    status: 'Working'
+    status: 'Completed'
   },
 
   {
@@ -87,7 +87,7 @@ export const SPRINTS: Sprint[] = [
       }
     ],
     sprintSummary: 'adipisci velit, sed quia non numqua incidunt',
-    status: 'Working'
+    status: 'Active'
   },
 
   {
@@ -135,12 +135,12 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'completed',
+        status: 'Deploy',
         sprintId: 3
       }
     ],
     sprintSummary: 'adipisci velit, sed quia non numqua incidunt',
-    status: 'Working'
+    status: 'Completed'
   },
 
   {
@@ -160,7 +160,7 @@ export const SPRINTS: Sprint[] = [
         priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
-        status: 'completed',
+        status: 'Deploy',
         sprintId: 4
       },
       {
@@ -189,12 +189,12 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'completed',
+        status: 'Deploy',
         sprintId: 4
       }
     ],
     sprintSummary: 'molestiae consequatur, vel illum',
-    status: 'COMPLETED'
+    status: 'Active'
   },
 
   {
@@ -214,7 +214,7 @@ export const SPRINTS: Sprint[] = [
         priority: 'Low',
         comments: ['comment 1'],
         storyPoint: 8,
-        status: 'completed',
+        status: 'Deploy',
         sprintId: 5
       },
       {
@@ -242,12 +242,12 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'completed',
+        status: 'Deploy',
         sprintId: 5
       }
     ],
     sprintSummary: 'quae ab illo inventore veritatis',
-    status: 'COMPLETED'
+    status: 'Active'
   },
   {
     id: 6,
@@ -294,12 +294,12 @@ export const SPRINTS: Sprint[] = [
           'comment 5'
         ],
         storyPoint: 55,
-        status: 'completed',
+        status: 'Deploy',
         sprintId: 6
       }
     ],
     sprintSummary: 'molestiae consequatur, vel illum',
-    status: 'COMPLETED'
+    status: 'Completed'
   },
 
   {
@@ -330,7 +330,7 @@ export const SPRINTS: Sprint[] = [
         priority: 'Low',
         comments: [],
         storyPoint: 3,
-        status: 'Completed',
+        status: 'Deploy',
         sprintId: 7
       },
       {
@@ -352,6 +352,6 @@ export const SPRINTS: Sprint[] = [
       }
     ],
     sprintSummary: 'quae ab illo inventore veritatis',
-    status: 'COMPLETED'
+    status: 'Active'
   }
 ];

@@ -21,22 +21,53 @@
 
     <div
       class="col-sm-9 col-md-6 col-lg-6 ml-4"
-      style="background-color: yellowgreen;"
+      style="background-color: transparent;"
     >
       <div id="sprint-date-container" style="color: white;">
-        <p id="sprint-date">{{ chosenSprint.endDate }}</p>
+        <p
+          id="sprint-date"
+          style="color: red; font-size:large; font-weight: bold;"
+        >
+          Due Date: {{ chosenSprint.endDate }}
+        </p>
       </div>
       <div id="sprint-userstories" class="row w-100">
-        <div class="row">
+        <div class="row" *ngIf="activeUserStores">
+          <h5 style="color: white; font-weight: bolder;">
+            Incompleted Sprints
+          </h5>
           <div
-            *ngFor="let s of chosenSprint.userStories"
+            *ngFor="let s of activeUserStores"
             class="card m-3"
-            style="width: 35.5em; height: 10em;"
+            style="width: 35.5em; height: 12em;"
           >
             <div class="card-body">
               <h6 class="card-title">{{ s.title }}</h6>
               <hr />
               <p class="card-text">{{ s.description }}</p>
+              <p class="card-text">{{ s.status }}</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <span class="{{ SetPriorityColor(s.priority) }}"
+                >{{ s.priority }}
+              </span>
+              <span class="badge badge-secondary ml-2">{{ s.storyPoint }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="completedUserStories">
+          <h5 style="color: white; font-weight: bolder;">Completed Sprints</h5>
+          <div
+            *ngFor="let s of completedUserStories"
+            class="card m-3"
+            style="width: 35.5em; height: 12em;"
+          >
+            <div class="card-body">
+              <h6 class="card-title">{{ s.title }}</h6>
+              <hr />
+              <p class="card-text">{{ s.description }}</p>
+              <p class="card-text">{{ s.status }}</p>
             </div>
             <div class="card-footer bg-transparent">
               <span class="{{ SetPriorityColor(s.priority) }}"

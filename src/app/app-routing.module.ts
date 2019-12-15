@@ -1,3 +1,4 @@
+import { SprintlistBoardComponent } from './sprintlist-board/sprintlist-board.component';
 import { SprintDetailsComponent } from './sprint-details/sprint-details.component';
 import { SprintRetroComponent } from './sprint-retro/sprint-retro.component';
 import { SprintReviewComponent } from './sprint-review/sprint-review.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'sprint-planning', component: SprintPlanningComponent},
   { path: 'sprint-review', component: SprintReviewComponent},
   { path: 'sprint-retro', component: SprintRetroComponent},
-  { path: 'sprint-details/:id', component: SprintDetailsComponent}
+  { path: 'sprint-details/:id', component: SprintDetailsComponent},
+  { path: 'sprintlist-board', component: SprintlistBoardComponent}
 ];
 
 @NgModule({

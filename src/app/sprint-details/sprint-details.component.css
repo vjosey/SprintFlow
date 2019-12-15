@@ -11,12 +11,12 @@
 }
 
 #sprint-date-container {
-  background-color: yellow;
+  background-color: transparent;
   float: right;
 }
 
 #sprint-date {
-  background-color: lightsalmon;
+  background-color: transparent;
 }
 
 #sprint-name {

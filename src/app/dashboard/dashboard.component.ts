@@ -60,4 +60,8 @@ completedSprints: Sprint[] = [];
   getSprints(): void {
     this.sprintService.getSprints().subscribe( sprints => this.sprints = sprints);
   }
+
+  showAllSprints(route: string): void {
+    this.router.navigate(['sprintlist-board']);
+  }
 }

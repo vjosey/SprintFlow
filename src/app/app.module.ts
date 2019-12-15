@@ -12,6 +12,7 @@ import { SprintPlanningComponent } from './sprint-planning/sprint-planning.compo
 import { SprintReviewComponent } from './sprint-review/sprint-review.component';
 import { SprintRetroComponent } from './sprint-retro/sprint-retro.component';
 import { SprintBoardComponent } from './sprint-board/sprint-board.component';
+import { SprintlistBoardComponent } from './sprintlist-board/sprintlist-board.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SprintBoardComponent } from './sprint-board/sprint-board.component';
     SprintPlanningComponent,
     SprintReviewComponent,
     SprintRetroComponent,
-    SprintBoardComponent
+    SprintBoardComponent,
+    SprintlistBoardComponent
   ],
   imports: [
     BrowserModule,
