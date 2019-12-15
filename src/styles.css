@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+  color: #21232f;
+  font-weight: bold;
+}
+
+h5 {
+  font-family: 'Roboto', sans-serif;
+  color: #21232f;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+.subtitle {
+  font-family: 'Roboto', sans-serif;
+  color: #a4a5a9;
+  font-weight: normal;
+}
