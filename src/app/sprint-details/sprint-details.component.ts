@@ -15,6 +15,7 @@ export class SprintDetailsComponent implements OnInit {
   chosenSprint: Sprint; // The sprint that was selected on the dashboard page.
   completedUserStories: UserStory[] = [];
   activeUserStores: UserStory[] = [];
+  isActive: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class SprintDetailsComponent implements OnInit {
     */
     this.getSprint();
     this.sortUserStores(this.chosenSprint);
+    this.isActiveFunc(this.chosenSprint);
 
   }
 
@@ -79,7 +81,7 @@ export class SprintDetailsComponent implements OnInit {
   * based on the current sprint's active status.
   */
   nextActivity(): void {
-    /*
+  /*
     switch (sprintStatus.toLowerCase()) {
       case 'planning':
         break;
@@ -96,4 +98,11 @@ export class SprintDetailsComponent implements OnInit {
     */
   }
 
+  isActiveFunc(sprint: Sprint){
+    if (sprint.status.toLowerCase() === 'active'){
+      this.isActive = true;
+    } else {
+      this.isActive = false;
+    }
+  }
 }

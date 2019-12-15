@@ -31,6 +31,20 @@
           Due Date: {{ chosenSprint.endDate }}
         </p>
       </div>
+
+      <div class="row w-100" *ngIf="!isActive">
+          <h5 style="color: white;">Review Details: </h5><br>
+          <div class="row w-100 ml-1 mb-2" style="color: white;">
+
+              {{ chosenSprint.reviewDetails }} sfssfsdfsf
+          </div>
+
+          <h5 style="color: white;">Retro Details: </h5><br>
+            <div class="row w-100 ml-1 mb-5" style="color: white;">
+              {{ chosenSprint.retroDetails }} tgergerherher
+            </div>
+      </div>
+
       <div id="sprint-userstories" class="row w-100">
         <div class="row" *ngIf="activeUserStores">
           <h5 style="color: white; font-weight: bolder;">
@@ -81,7 +95,7 @@
     </div>
   </div>
 
-  <div class="text-center">
+  <div class="text-center" *ngIf="isActive">
     <button class="btn btn-primary w-50 m-5" (click)="nextActivity()">
       Continue
     </button>
