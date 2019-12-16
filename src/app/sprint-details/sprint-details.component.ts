@@ -82,6 +82,7 @@ export class SprintDetailsComponent implements OnInit {
   * based on the current sprint's active status.
   */
   nextActivity(): void {
+    this.router.navigate([`/sprint-board/${this.chosenSprint.id}`]);
   /*
     switch (sprintStatus.toLowerCase()) {
       case 'planning':
@@ -99,7 +100,7 @@ export class SprintDetailsComponent implements OnInit {
     */
   }
 
-  isActiveFunc(sprint: Sprint){
+  isActiveFunc(sprint: Sprint) {
     if (sprint.status.toLowerCase() === 'active') {
       this.isActive = true;
     } else {

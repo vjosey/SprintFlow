@@ -352,6 +352,6 @@ export const SPRINTS: Sprint[] = [
       }
     ],
     sprintSummary: 'quae ab illo inventore veritatis',
-    status: 'Active'
+    status: 'Completed'
   }
 ];
