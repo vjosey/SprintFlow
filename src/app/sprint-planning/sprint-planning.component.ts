@@ -92,7 +92,7 @@ if (this.userStory.title && this.userStory.description) {
   // Set story point to a Fibonacci number
   this.userStory.storyPoint = this.findFibonacci(this.userStory.storyPoint);
 
-
+  this.userStory.status = 'TODO';
   // Push User story into the Userstories list, close modal and set User story to new user
   this.stories.push(this.userStory);
   $('#newStoryModal').modal('hide');

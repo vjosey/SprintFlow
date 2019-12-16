@@ -46,6 +46,10 @@ stories.forEach(story => {
 }
 
 addToGroup(story: UserStory) {
+
+if (story.status === 'completed') {
+  story.status = 'DEPLOY';
+}
   switch (story.status) {
     case 'TODO':
       this.toDo.push(story);
@@ -84,6 +88,8 @@ SetPriorityColor(priorityType: string): string
 }
 
 checkStoryStatus() {
+
+
 
   if (this.toDo.length > 0) {
     this.toDo.forEach(story => {

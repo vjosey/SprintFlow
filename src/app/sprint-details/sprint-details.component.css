@@ -1,5 +1,5 @@
 .sprint-page-title{
-  color:white;
+  color: #21232f;
   font-size: xx-large;
   font-weight: bolder;
 }
@@ -11,12 +11,11 @@
 }
 
 #sprint-date-container {
-  background-color: yellow;
   float: right;
 }
 
 #sprint-date {
-  background-color: lightsalmon;
+  font-weight: bold;
 }
 
 #sprint-name {

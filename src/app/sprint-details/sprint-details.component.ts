@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SprintService } from './../sprint.service';
 import { Sprint } from './../model/Sprint';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class SprintDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sprintService: SprintService,
-    private location: Location
+    private location: Location, private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -79,6 +80,7 @@ export class SprintDetailsComponent implements OnInit {
   * based on the current sprint's active status.
   */
   nextActivity(): void {
+    this.router.navigate([`/sprint-board/${this.chosenSprint.id}`]);
     /*
     switch (sprintStatus.toLowerCase()) {
       case 'planning':
