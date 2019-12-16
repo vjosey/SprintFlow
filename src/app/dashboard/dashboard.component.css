@@ -3,3 +3,15 @@
     font-weight: bold;
     font-size: x-large;
 }
+
+.subtitle {
+  font-family: 'Roboto', sans-serif;
+  color: #a4a5a9;
+  font-weight: normal;
+}
+
+.datetitle{
+  font-family: 'Roboto', sans-serif;
+  color: #21232f;
+  font-weight: bold;
+}

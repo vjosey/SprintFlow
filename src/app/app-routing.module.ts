@@ -13,11 +13,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'sprint-board/:id', component: SprintBoardComponent},
-  { path: 'sprint-planning', component: SprintPlanningComponent},
-  { path: 'sprint-review', component: SprintReviewComponent},
-  { path: 'sprint-retro', component: SprintRetroComponent},
+  { path: 'sprint-planning/:id', component: SprintPlanningComponent},
+  { path: 'sprint-review/:id', component: SprintReviewComponent},
+  { path: 'sprint-retro/:id', component: SprintRetroComponent},
   { path: 'sprint-details/:id', component: SprintDetailsComponent},
-  { path: 'sprintlist-board', component: SprintlistBoardComponent}
+  { path: 'sprint-planning', component: SprintPlanningComponent}
 ];
 
 @NgModule({

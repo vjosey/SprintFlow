@@ -13,10 +13,7 @@ import { MessageService } from './message.service';
 })
 export class SprintService {
 
-
-
   constructor(private messageService: MessageService) { }
-
 
   getSprints(): Observable<Sprint[]> {
     // TODO: replace for database
@@ -28,13 +25,17 @@ export class SprintService {
     return of(SPRINTS.find(sprint => sprint.id === sprintId));
   }
 
-
-
-
-
  addSprint(sprint: Sprint): void {
-   SPRINTS.push(sprint);
+  // create a new id for new sprint.
+  // This should be done from the database in the future
+  sprint.id = SPRINTS.length + 1;
+  console.log(sprint.id);
+  SPRINTS.push(sprint);
  }
 
+ updateSprint(sprint: Sprint): void  {
+ // TODO: Update sprint in database
+
+ }
 
 }

@@ -1,3 +1,5 @@
+
+
 <div class="row mb-2">
   <h4>Sprint Planning</h4>
 </div>
@@ -5,9 +7,9 @@
 <div class="row">
 <!-- Create a sprint section-->
 <div class="col-5">
-
+<br>
   <div class="form-group form-row">
-    <input [(ngModel)]="sprint.name" type="text" class="form-control" id="sprintNameInput" placeholder="Sprint Name">
+    <input [(ngModel)]="sprint.name" type="text" class="form-control" id="sprintNameInput" placeholder="Sprint Name" required>
   </div>
 
   <div class="form-row">
@@ -124,7 +126,7 @@
   </div>
 
     <!-- Modal -->
-    <div  class="modal fade" id="StoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div  class="modal fade" id="StoryModal" tabindex="-1" role="dialog" aria-labelledby="StoryModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

@@ -3,6 +3,7 @@ import { Sprint } from './../model/Sprint';
 import { UserStory } from './../model/UserStory';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -31,13 +32,30 @@ titleMaxSize = 50;
 storyPointMax = 144;
 priorityInfo = 'Select a priority for User Story.';
 priority = 'Medium';
-// priorityColor = 'badge badge-primary';
 
-constructor(private sprintService: SprintService, private router: Router) {
+constructor(private sprintService: SprintService, private router: Router, private route: ActivatedRoute,) {
 }
 
   ngOnInit() {
+
+    // Check if uri has an /id from exsisting sprints, for blank for new sprints and get exsisting sprint data
+    if (this.route.snapshot.paramMap.get('id') !== null) {
+        this.getSprint();
+    }
   }
+
+  getSprint(): void {
+    // Grabs a sprint based on the sprint id in order to display it's information to the user
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.sprintService.getSprintById(id).subscribe(sprint => this.sprint = sprint);
+    this.setSprintFromParamMapId();
+  }
+
+
+  setSprintFromParamMapId() {
+    this.stories = this.sprint.userStories;
+  }
+
 
 selectedUserStory(story: UserStory) {
  this.selectedStory = story;
@@ -74,7 +92,7 @@ if (this.userStory.title && this.userStory.description) {
   // Set story point to a Fibonacci number
   this.userStory.storyPoint = this.findFibonacci(this.userStory.storyPoint);
 
-
+  this.userStory.status = 'TODO';
   // Push User story into the Userstories list, close modal and set User story to new user
   this.stories.push(this.userStory);
   $('#newStoryModal').modal('hide');
@@ -103,25 +121,42 @@ setStoryModalAlert(t: boolean) {
   this.showUserStoryModalAlert = t;
 }
 
-addSprint() {
-  // Assign User stories to Sprint
-  if (this.stories.length) {
+addSprint(status: string) {
+    // Assign User stories to Sprint
     this.sprint.userStories = this.stories;
-    this.sprint.status = 'Active';
+    this.sprint.status = status;
+    this.sprint.sprintSummary = this.sprint.description;
+
+    // Add sprint to database
+    this.sprintService.addSprint(this.sprint);
+}
+
+
+OnComplete(save: boolean) {
+
+if (this.stories.length && this.sprint.description && this.sprint.name && this.sprint.startDate && this) {
+ if (!this.sprint.id) {
+   // if save is true the sprint will be added in  "Planning" status
+   // While in planning status the user will be able to make changes to sprint setup and the sprint time counter will not start
+    if (save) {
+      this.addSprint('Planning');
+    } else {
+      this.addSprint('Working');
+    }
+  } else {
+    // TODO: update sprint
+    console.log('Sprint Id, update');
   }
 
-  this.sprint.sprintSummary = this.sprint.description;
-  this.sprintService.addSprint(this.sprint);
+  this.router.navigate([`/sprint-details/${this.sprint.id}`]);
+  this.sprint = new Sprint();
+
+} else {
+ // TODO: User alert
+ $('.alert').alert('show');
+ console.warn('Sprint Id, update');
 }
 
-OnComplete() {
- if (this.sprint.name) {
-  this.addSprint();
-  this.sprint = new Sprint();
-  this.router.navigate(['/sprint-board']);
-} else {
-  console.log('Not Sprint Name');
-}
 }
 
 SetPriorityInfo(priorityType: string)

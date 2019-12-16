@@ -2,34 +2,28 @@
   <h3 id="title" class="sprint-page-title">Overview</h3>
   <div class="row">
     <div id="sprint-details" class="col-sm-3 col-md-6 col-lg-4 mr-4">
-      <div id="sprint-name" style="color: white;">
+      <div id="sprint-name" style="color: #21232f;">
         Sprint name: {{ chosenSprint.name }}
       </div>
-      <div id="sprint-time-box" class="row" style="color: white;">
-        <div id="sprint-start-date" class="ml-3" style="color: white;">
+      <div id="sprint-time-box" class="row" style="color: #21232f;">
+        <div id="sprint-start-date" class="ml-3" style="color:#21232f;">
           Timebox: {{ chosenSprint.startDate }}
         </div>
         -
-        <div id="sprint-end-date" class="mb-2" style="color: white;">
+        <div id="sprint-end-date" class="mb-2" style="color:#21232f;">
           {{ chosenSprint.endDate }}
         </div>
       </div>
-      <div id="sprint-summary" class="mt-10" style="color: white;">
+      <div id="sprint-summary" class="mt-10" style="color: #21232f;">
         Sprint Summary: {{ chosenSprint.sprintSummary }}
       </div>
     </div>
 
     <div
       class="col-sm-9 col-md-6 col-lg-6 ml-4"
-      style="background-color: transparent;"
     >
-      <div id="sprint-date-container" style="color: white;">
-        <p
-          id="sprint-date"
-          style="color: red; font-size:large; font-weight: bold;"
-        >
-          Due Date: {{ chosenSprint.endDate }}
-        </p>
+      <div id="sprint-date-container" style="color:#21232f;">
+        <p id="sprint-date">{{ chosenSprint.endDate }}</p>
       </div>
 
       <div class="row w-100" *ngIf="!isActive">
