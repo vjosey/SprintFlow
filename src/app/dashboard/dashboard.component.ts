@@ -1,9 +1,8 @@
-import { Observable } from 'rxjs';
 import { SprintService } from './../sprint.service';
 import { Sprint } from './../model/Sprint';
 import { Component, OnInit } from '@angular/core';
-import { getLocaleDateFormat } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-sprints: Sprint[];
+// sprints: Sprint[] = [];
 activeSprints: Sprint[] = [];
 completedSprints: Sprint[] = [];
 
@@ -20,8 +19,8 @@ completedSprints: Sprint[] = [];
 
   ngOnInit() {
     this.getSprints();
-    this.sprintSorter(this.sprints);
   }
+
 
   /*
   * When a user clicks on a sprint on the dashboard page it will navigate them to
@@ -40,17 +39,23 @@ completedSprints: Sprint[] = [];
   * that is for all other arrays in the active status.
   */
   sprintSorter(sprints: Sprint[]): void {
-    // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < sprints.length; index++) {
-      if (sprints[index].status.toLowerCase() === 'completed' && this.completedSprints.length < 4) {
-        this.completedSprints.push(sprints[index]);
-      } else if (sprints[index].status.toLowerCase() !== 'completed' && this.activeSprints.length < 3) {
-        this.activeSprints.push(sprints[index]);
-      } else {
-        // display no data message
-        console.log('Not applicable status');
+    // tslint:disable-next-line: prefer-for-
+    if (sprints.length !== 0) {
+      for(let index = 0; index < sprints.length; index++) {
+        if (sprints[index].status.toLowerCase() === 'completed' && this.completedSprints.length < 4) {
+          this.completedSprints.push(sprints[index]);
+        } else if (sprints[index].status.toLowerCase() !== 'completed' && this.activeSprints.length < 3) {
+          this.activeSprints.push(sprints[index]);
+        } else {
+          // display no data message
+          console.log('Not applicable status');
+        }
       }
-    }
+      console.log('workin');
+  } else {
+
+    console.log('not workin');
+  }
   }
 
   /*
@@ -58,7 +63,9 @@ completedSprints: Sprint[] = [];
   * and locally stores it in it's own variable.
   */
   getSprints(): void {
-    this.sprintService.getSprints().subscribe( sprints => this.sprints = sprints);
+    this.sprintService.getSprints().subscribe( sprints => {
+      this.sprintSorter(sprints);
+     });
   }
 
   showAllSprints(route: string): void {

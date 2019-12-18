@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col my-3  pt-1" *ngIf="sprints">
-      <h5 style="color: white;">Active Sprints</h5>
+  <div class="col my-3  pt-1" *ngIf="activeSprints">
+      <h5 style="color: #21232f;">Active Sprints</h5>
     <div class="row w-100">
       <div
         style="width: 15em;"
@@ -19,9 +19,8 @@
     </div>
   </div>
 
-
-  <div class="col my-3  pt-1" *ngIf="sprints">
-      <h5 style="color: white;">Completed Sprints</h5>
+  <div class="col my-3  pt-1" *ngIf="completedSprints">
+      <h5 style="color: #21232f;">Completed Sprints</h5>
     <div class="row w-100">
       <div
         style="width: 15em;"

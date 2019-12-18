@@ -30,13 +30,16 @@ chosenSprint: Sprint = new Sprint();
     * grab that specific sprint's object
     */
     this.getSprint();
-    this.sortUserStores(this.chosenSprint.userStories);
   }
 
   getSprint(): void {
     // Grabs a sprint based on the sprint id in order to display it's information to the user
     const id = +this.route.snapshot.paramMap.get('id');
-    this.sprintService.getSprintById(id).subscribe(sprint => this.chosenSprint = sprint);
+    this.sprintService.getSprintById(id).subscribe(sprint => {
+      this.chosenSprint = sprint;
+      this.chosenSprint.userStories[0].status = "TODO";
+      this.sortUserStores(this.chosenSprint.userStories);
+    });
   }
 
 sortUserStores(stories: UserStory[]) {

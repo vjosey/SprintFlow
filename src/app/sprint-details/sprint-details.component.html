@@ -19,29 +19,30 @@
       </div>
     </div>
 
-    <div
-      class="col-sm-9 col-md-6 col-lg-6 ml-4"
-    >
+    <div class="col-sm-9 col-md-6 col-lg-6 ml-4">
+
       <div id="sprint-date-container" style="color:#21232f;">
         <p id="sprint-date">{{ chosenSprint.endDate }}</p>
       </div>
 
       <div class="row w-100" *ngIf="!isActive">
-          <h5 style="color: white;">Review Details: </h5><br>
-          <div class="row w-100 ml-1 mb-2" style="color: white;">
-
-              {{ chosenSprint.reviewDetails }} sfssfsdfsf
+          <h5>Review Details: </h5>
+          <br>
+          <div class="row w-100 ml-1 mb-2">
+              {{ chosenSprint.reviewDetails }}
           </div>
 
-          <h5 style="color: white;">Retro Details: </h5><br>
-            <div class="row w-100 ml-1 mb-5" style="color: white;">
-              {{ chosenSprint.retroDetails }} tgergerherher
+          <h5 >Retro Details: </h5>
+          <br>
+
+            <div class="row w-100 ml-1 mb-5">
+              {{ chosenSprint.retroDetails }}
             </div>
       </div>
 
       <div id="sprint-userstories" class="row w-100">
         <div class="row" *ngIf="activeUserStores">
-          <h5 style="color: white; font-weight: bolder;">
+          <h5 style=" font-weight: bolder;">
             Incompleted Sprints
           </h5>
           <div
@@ -65,7 +66,7 @@
         </div>
 
         <div class="row" *ngIf="completedUserStories">
-          <h5 style="color: white; font-weight: bolder;">Completed Sprints</h5>
+          <h5 style="font-weight: bolder;">Completed Sprints</h5>
           <div
             *ngFor="let s of completedUserStories"
             class="card m-3"

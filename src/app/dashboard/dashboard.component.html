@@ -8,7 +8,7 @@
     </div>
 
     <div class="row w-100 mb-5">
-        <div class="col my-3  pt-1" *ngIf="sprints">
+        <div class="col my-3  pt-1" *ngIf="activeSprints">
             <div class="row w-100 justify-content-center">
                     <div style="width: 15em;" class="card mx-2" *ngFor="let sprint of activeSprints"
                     (click)="goTo('/sprint-details', sprint.id)" [routerLink]="['/sprint-details', sprint.id]">
@@ -37,7 +37,7 @@
         <span class="subtitle">Completed Sprints</span>
     </div>
 
-    <div class="row my-3 w-100 pt-1 justify-content-center" *ngIf="sprints">
+    <div class="row my-3 w-100 pt-1 justify-content-center" *ngIf="completedSprints">
         <div style="width: 15em;" class="card mx-2" *ngFor="let sprint of completedSprints"
             (click)="goTo('/sprint-details', sprint.id)" [routerLink]="['/sprint-details', sprint.id]">
             <div class="card-body">

@@ -51,11 +51,9 @@ constructor(private sprintService: SprintService, private router: Router, privat
     this.setSprintFromParamMapId();
   }
 
-
   setSprintFromParamMapId() {
     this.stories = this.sprint.userStories;
   }
-
 
 selectedUserStory(story: UserStory) {
  this.selectedStory = story;
@@ -73,7 +71,6 @@ OpenModal() {
   // alert( 'hello' );
   $('#newStoryModal').modal('show');
 }
-
 
 // Push New User Story to Array
 addUserStory( ) {

@@ -20,7 +20,7 @@
       cdkDropList
       [cdkDropListData]="toDo"
       class="board-list"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)" >
       <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toDo" cdkDrag>
 
         <div class="card-body">

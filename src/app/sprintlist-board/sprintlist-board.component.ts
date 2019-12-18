@@ -8,7 +8,7 @@ import { Sprint } from "../model/sprint";
   styleUrls: ["./sprintlist-board.component.css"]
 })
 export class SprintlistBoardComponent implements OnInit {
-  sprints: Sprint[];
+  // sprints: Sprint[];
   activeSprints: Sprint[] = [];
   completedSprints: Sprint[] = [];
 
@@ -16,7 +16,6 @@ export class SprintlistBoardComponent implements OnInit {
 
   ngOnInit() {
     this.getSprints();
-    this.sprintSorter(this.sprints);
   }
 
   /*
@@ -25,6 +24,7 @@ export class SprintlistBoardComponent implements OnInit {
    */
   sprintSorter(sprints: Sprint[]): void {
     // tslint:disable-next-line: prefer-for-of
+    if (sprints.length !== 0) {
     for (let index = 0; index < sprints.length; index++) {
       if (sprints[index].status.toLowerCase() === "completed") {
         this.completedSprints.push(sprints[index]);
@@ -36,6 +36,7 @@ export class SprintlistBoardComponent implements OnInit {
       }
     }
   }
+  }
 
   /*
    * Calls on the spring-service class to get hold of the array of sprints
@@ -44,6 +45,8 @@ export class SprintlistBoardComponent implements OnInit {
   getSprints(): void {
     this.sprintService
       .getSprints()
-      .subscribe(sprints => (this.sprints = sprints));
+      .subscribe(sprints => {
+        this.sprintSorter(sprints);
+      });
   }
 }

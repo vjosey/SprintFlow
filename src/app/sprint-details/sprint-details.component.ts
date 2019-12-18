@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sprint-details.component.css']
 })
 export class SprintDetailsComponent implements OnInit {
-  chosenSprint: Sprint; // The sprint that was selected on the dashboard page.
+  chosenSprint: Sprint = new Sprint(); // The sprint that was selected on the dashboard page.
   completedUserStories: UserStory[] = [];
   activeUserStores: UserStory[] = [];
   isActive: boolean;
@@ -30,15 +30,17 @@ export class SprintDetailsComponent implements OnInit {
     * grab that specific sprint's object
     */
     this.getSprint();
-    this.sortUserStores(this.chosenSprint);
-    this.isActiveFunc(this.chosenSprint);
-
   }
 
   getSprint(): void {
     // Grabs a sprint based on the sprint id in order to display it's information to the user
     const id = +this.route.snapshot.paramMap.get('id');
-    this.sprintService.getSprintById(id).subscribe(sprint => this.chosenSprint = sprint);
+    this.sprintService.getSprintById(id).subscribe(sprint => {
+      this.chosenSprint = sprint;
+      this.sortUserStores(sprint);
+      this.isActiveFunc(sprint);
+      console.log(this.chosenSprint);
+    });
   }
 
   /*
