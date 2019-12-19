@@ -37,7 +37,6 @@ chosenSprint: Sprint = new Sprint();
     const id = +this.route.snapshot.paramMap.get('id');
     this.sprintService.getSprintById(id).subscribe(sprint => {
       this.chosenSprint = sprint;
-      this.chosenSprint.userStories[0].status = "TODO";
       this.sortUserStores(this.chosenSprint.userStories);
     });
   }
