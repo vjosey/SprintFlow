@@ -62,9 +62,9 @@ if (story.status === 'completed') {
           case 'TOREVIEW':
               this.toReview.push(story);
               break;
-              case 'DEPLOY':
-                  this.depoly.push(story);
-                  break;
+case 'DEPLOY':
+this.depoly.push(story);
+break;
   }
 }
 
