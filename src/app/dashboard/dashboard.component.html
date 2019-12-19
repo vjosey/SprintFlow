@@ -11,7 +11,7 @@
         <div class="col my-3  pt-1" *ngIf="activeSprints">
             <div class="row w-100 justify-content-center">
                     <div style="width: 15em;" class="card mx-2" *ngFor="let sprint of activeSprints"
-                    (click)="goTo('/sprint-details', sprint.id)" [routerLink]="['/sprint-details', sprint.id]">
+                    (click)="goTo('/sprint-details', sprint.id)">
                     <div class="card-body">
                         <h5 class="card-title">{{sprint.name}}</h5>
                         <p>{{sprint.sprintSummary}}</p>
@@ -39,7 +39,7 @@
 
     <div class="row my-3 w-100 pt-1 justify-content-center" *ngIf="completedSprints">
         <div style="width: 15em;" class="card mx-2" *ngFor="let sprint of completedSprints"
-            (click)="goTo('/sprint-details', sprint.id)" [routerLink]="['/sprint-details', sprint.id]">
+            (click)="goTo('/sprint-details', sprint.id)">
             <div class="card-body">
                 <h5 class="card-title">{{sprint.name}}</h5>
                 <p>{{sprint.sprintSummary}}</p>

@@ -6,15 +6,17 @@
         style="width: 15em;"
         class="card mx-2 mb-3"
         *ngFor="let sprint of activeSprints"
+        (click)="goTo('/sprint-details', sprint.id)"
       >
-        <div class="card-body">
-          <h5 class="card-title">{{ sprint.name }}</h5>
-          <hr />
-          <div>{{ sprint.sprintSummary }}</div>
-          <div>{{ sprint.endDate }}</div>
-          <hr />
-          <div>{{ sprint.status }}</div>
-        </div>
+      <div class="card-body">
+        <h5 class="card-title">{{sprint.name}}</h5>
+        <p>{{sprint.sprintSummary}}</p>
+        <span class="datetitle">{{sprint.endDate}}</span>
+        <hr class="mt-4">
+        <span class="badge badge-primary">{{sprint.status}}</span>
+        <p class="badge badge-secondary ml-2">User Stories  <span class="badge badge-light">{{sprint.userStories.length}}</span></p>
+    </div>
+
       </div>
     </div>
   </div>
@@ -26,15 +28,15 @@
         style="width: 15em;"
         class="card mx-2 mb-3"
         *ngFor="let sprint of completedSprints"
+        (click)="goTo('/sprint-details', sprint.id)"
       >
-        <div class="card-body m-2">
-          <h5 class="card-title">{{ sprint.name }}</h5>
-          <hr />
-          <div>{{ sprint.sprintSummary }}</div>
-          <div>{{ sprint.endDate }}</div>
-          <hr />
-          <div>{{ sprint.status }}</div>
-        </div>
+      <div class="card-body">
+        <h5 class="card-title">{{sprint.name}}</h5>
+        <p>{{sprint.sprintSummary}}</p>
+        <span class="datetitle">{{sprint.endDate}}</span>
+        <hr>
+        <span class="badge badge-dark">{{sprint.status}}</span>
+    </div>
       </div>
     </div>
   </div>

@@ -39,7 +39,6 @@ export class SprintDetailsComponent implements OnInit {
       this.chosenSprint = sprint;
       this.sortUserStores(sprint);
       this.isActiveFunc(sprint);
-      console.log(this.chosenSprint);
     });
   }
 

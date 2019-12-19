@@ -1,6 +1,7 @@
 import { SprintService } from "./../sprint.service";
 import { Component, OnInit } from "@angular/core";
 import { Sprint } from "../model/sprint";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-sprintlist-board",
@@ -12,7 +13,7 @@ export class SprintlistBoardComponent implements OnInit {
   activeSprints: Sprint[] = [];
   completedSprints: Sprint[] = [];
 
-  constructor(private sprintService: SprintService) {}
+  constructor(private sprintService: SprintService, private router: Router, private route: ActivatedRoute ) {}
 
   ngOnInit() {
     this.getSprints();
@@ -48,5 +49,13 @@ export class SprintlistBoardComponent implements OnInit {
       .subscribe(sprints => {
         this.sprintSorter(sprints);
       });
+  }
+
+  goTo(route: string, id: number): void {
+    if (id != null) {
+      this.router.navigate([route, id], {relativeTo: this.route});
+    } else {
+      this.router.navigate([route]);
+    }
   }
 }

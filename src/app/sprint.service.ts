@@ -13,7 +13,7 @@ import { MessageService } from './message.service';
 })
 export class SprintService {
 
-  private sprintUrl = 'http://localhost:8080/api/sprints';  // TODO: URL to web; Change for production
+  private sprintUrl = 'http://localhost:8080/api/sprintflow';  // TODO: URL to web; Change for production
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,18 +37,25 @@ export class SprintService {
   }
 
  addSprint(sprint: Sprint): Observable<Sprint> {
-  return this.http.post<Sprint>(this.sprintUrl, sprint, this.httpOptions).pipe(
-    catchError(this.handleError<Sprint>('addSprint'))
+
+  console.log(sprint);
+  return this.http.post<Sprint>(`${this.sprintUrl}/sprint`, sprint, this.httpOptions).pipe(
+    catchError(this.handleError<Sprint>('addSprint', sprint))
   );
  }
 
- updateSprint(sprint: Sprint): Observable<any>  {
-   return this.http.put(this.sprintUrl, sprint, this.httpOptions).pipe(
+ updateSprint(sprint: Sprint): Observable<Sprint>  {
+   return this.http.put(`${this.sprintUrl}/sprint`, sprint, this.httpOptions).pipe(
     catchError(this.handleError<any>('updateSprint'))
    );
-
-
  }
+
+ deleteSprint(id: number): Observable<{}> {
+  const url = `${this.sprintUrl}/sprint/${id}`;
+  return this.http.delete(url, this.httpOptions).pipe(
+  catchError(this.handleError(`deleteSprint`))
+  );
+}
 
 
  private handleError<T>(operation = 'operation', result?: T) {

@@ -8,7 +8,10 @@ export class Sprint {
   retroDetails: string;
   startDate: string;
   endDate: string;
+  dateCreated: string;
   userStories: UserStory[];
   sprintSummary: string;
   status: string;
+  timeStamp: Date;
+
 }

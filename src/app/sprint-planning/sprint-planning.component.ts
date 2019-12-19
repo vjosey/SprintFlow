@@ -47,8 +47,10 @@ constructor(private sprintService: SprintService, private router: Router, privat
   getSprint(): void {
     // Grabs a sprint based on the sprint id in order to display it's information to the user
     const id = +this.route.snapshot.paramMap.get('id');
-    this.sprintService.getSprintById(id).subscribe(sprint => this.sprint = sprint);
-    this.setSprintFromParamMapId();
+    this.sprintService.getSprintById(id).subscribe(sprint => {
+      this.sprint = sprint;
+      this.setSprintFromParamMapId();
+    });
   }
 
   setSprintFromParamMapId() {
@@ -79,6 +81,7 @@ if (this.userStory.title && this.userStory.description) {
   this.userStory.summary = this.userStory.description.substr(0, this.summarySize);
   // Set the length of title
   this.userStory.title = this.userStory.title.substr(0, this.titleMaxSize);
+  this.userStory.id = 0;
 
   if (this.priority == null) {
     this.userStory.priority = 'Medium';
@@ -123,9 +126,14 @@ addSprint(status: string) {
     this.sprint.userStories = this.stories;
     this.sprint.status = status;
     this.sprint.sprintSummary = this.sprint.description;
-
+    this.sprint.id = 0;
+    //Set timestamp on back-end
     // Add sprint to database
-    this.sprintService.addSprint(this.sprint);
+    this.sprintService.addSprint(this.sprint).subscribe(sprint => {
+      this.sprint = sprint;
+    });
+
+    setTimeout(() => {this.router.navigate([`/sprint-details/${this.sprint.id}`])}, 2000);
 }
 
 
@@ -144,9 +152,6 @@ if (this.stories.length && this.sprint.description && this.sprint.name && this.s
     // TODO: update sprint
     console.log('Sprint Id, update');
   }
-
-  this.router.navigate([`/sprint-details/${this.sprint.id}`]);
-  this.sprint = new Sprint();
 
 } else {
  // TODO: User alert
