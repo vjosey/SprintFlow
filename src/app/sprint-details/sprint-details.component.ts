@@ -102,7 +102,7 @@ export class SprintDetailsComponent implements OnInit {
   }
 
   isActiveFunc(sprint: Sprint) {
-    if (sprint.status.toLowerCase() === 'active') {
+    if (sprint.status.toLowerCase() !== 'completed') {
       this.isActive = true;
     } else {
       this.isActive = false;
