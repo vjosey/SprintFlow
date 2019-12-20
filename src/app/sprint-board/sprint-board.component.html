@@ -2,12 +2,20 @@
     <h3>Sprint Board</h3>
 </div>
 <div class="row my-3 w-100">
-    <div class="col-1"></div>
-    <div class="col-8"></div>
-    <div class="col-2"><h6>14 Days to go! </h6></div>
-    <div class="col-1">
+  <div class="col">
+    <button class="btn btn-primary btn-sm" type="button" (click)="goBack()" *ngIf="checkNextSprintStep()" >Details</button>
+    <button class="btn btn-secondary btn-sm" type="button" *ngIf="!checkNextSprintStep()" disabled>Details</button>
+  </div>
+  <div class="col">
+    <button class="btn btn-primary btn-sm" type="button" (click)="onSaveSprint()" *ngIf="!hasSaved" > Save</button>
+    <button class="btn btn-secondary btn-sm" type="button"  *ngIf="hasSaved" disabled > Save</button>
+  </div>
+    <div class="col-6"></div>
+    <div class="col-3"><h6>14 Days to go! </h6></div>
 
-      <button class="btn btn-primary btn-sm" type="button" > Next -></button>
+    <div class="col">
+      <button class="btn btn-primary btn-sm" type="button" (click)="onCompleteSprint()" *ngIf="checkNextSprintStep()" > Next -></button>
+      <button class="btn btn-secondary  btn-sm" type="button"  *ngIf="!checkNextSprintStep()" disabled> Next -></button>
     </div>
 </div>
 <div class="board">
@@ -21,7 +29,7 @@
       [cdkDropListData]="toDo"
       class="board-list"
       (cdkDropListDropped)="drop($event)" >
-      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toDo" cdkDrag>
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toDo" (click)="selectedUserStory(item)" cdkDrag>
 
         <div class="card-body">
           <h6 class="card-title" >{{ item.title }}</h6>
@@ -45,7 +53,7 @@
       [cdkDropListData]="doing"
       class="board-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of doing" cdkDrag>
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of doing" (click)="selectedUserStory(item)" cdkDrag>
         <div class="card-body">
           <h6 class="card-title" >{{ item.title }}</h6>
          </div>
@@ -68,7 +76,7 @@
       [cdkDropListData]="toReview"
       class="board-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toReview" cdkDrag>
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of toReview" (click)="selectedUserStory(item)" cdkDrag>
         <div class="card-body">
           <h6 class="card-title" >{{ item.title }}</h6>
          </div>
@@ -81,10 +89,6 @@
       </div>
     </div>
   </div>
-
-
-
-
 
   <div class="board-container">
     <h5>Done</h5>
@@ -94,7 +98,7 @@
       [cdkDropListData]="depoly"
       class="board-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of depoly" cdkDrag>
+      <div class="card m-3" style="width: 17em; height: 6em;" *ngFor="let item of depoly"  (click)="selectedUserStory(item)" cdkDrag>
         <div class="card-body">
           <h6 class="card-title" >{{ item.title }}</h6>
          </div>
@@ -110,3 +114,95 @@
 </div>
 </div>
 </div>
+
+
+
+
+  <!-- Modal -->
+  <div  class="modal fade" id="StoryModal" tabindex="-1" role="dialog" aria-labelledby="StoryModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 *ngIf="selectedStory"  class="modal-title" id="StoryModalTitle">{{ selectedStory.title }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div *ngIf="selectedStory" class="modal-body">
+         <!-- Content-->
+         <div *ngIf="!editSelectedStory; else editStory" >
+            {{ selectedStory.description }}
+            <br>
+            <hr>
+            <span class="{{SetPriorityColor(selectedStory.priority)}}">{{ selectedStory.priority }} </span>
+            <span class="badge badge-secondary ml-2">{{ selectedStory.storyPoint }}</span>
+            <span class="badge badge-secondary ml-2">{{ selectedStory.status }}</span>
+         </div>
+
+         <!-- Edit Content -->
+         <ng-template #editStory>
+
+         </ng-template>
+
+
+
+        </div>
+
+        <div class="modal-footer"  *ngIf="selectedStory">
+
+          <div class="row w-100">
+          <div class="form-group form-row">
+            <textarea [(ngModel)]="newComment" name="commentTextarea" class="form-control" maxlength="300" placeholder="Create Comment"></textarea>
+            <p>{{ getMaxCharCount(300,newComment) }}</p>
+          </div>
+          </div>
+          <div class="row w-100">
+            <button type="button" class="btn btn-secondary" *ngIf="!enableAddComment" disabled>Submit</button>
+            <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="enableAddComment">Submit</button>
+          </div>
+          <div class="row w-100">
+          <div class="card m-3 p-2" style="width: 100%; min-height: 6em;" *ngFor="let comment of selectedStory.comments"   >
+            <p>{{ comment.comment }}</p>
+
+         </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+   <!-- Modal Review-->
+   <div  class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5  class="modal-title" id="ReviewModalTitle">Ending Sprint</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+           <div class="p-3 text-center">
+            <h4>Ending Current Sprint!</h4>
+            <p>Click yes if you would like to continue.</p>
+           </div>
+        <div class="modal-footer">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-success" (click)="endSprint('no')" >No</button>
+            <button type="button" class="btn btn-danger"  (click)="endSprint('yes')"  >Yes</button>
+         </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+

@@ -46,7 +46,6 @@ export class SprintDetailsComponent implements OnInit {
   * Used in the userstory display card to color the priority
   */
   SetPriorityColor(priorityType: string): string {
-    console.log(priorityType);
     switch (priorityType) {
       case 'Lowest':
       return 'badge badge-primary';

@@ -1,1 +1,44 @@
-<p>sprint-review works!</p>
+
+<div>
+  <div class="row w-100 m-1 " >
+    <h2>{{pageTitle}}</h2>
+  </div>
+  <div class="row">
+    <div class="row w-100 p-3 justify-content-md-center" *ngIf="!isRetro">
+      <p>The result of the Sprint Review is a revised Product Backlog that defines the probable Product Backlog items for the next Sprint. </p>
+    </div>
+<div class="row w-100 justify-content-md-center " *ngIf="!isRetro">
+  <div class="form-group form-row">
+    <textarea [(ngModel)]="chosenSprint.reviewDetails" name="ReviewTextarea" class="form-control" maxlength="115" style="min-height: 8em; min-width: 20em;" required></textarea>
+    <p>{{ getMaxCharCount(115, chosenSprint.reviewDetails) }}</p>
+  </div>
+</div>
+<div class="row w-100 mb-5 justify-content-md-center" *ngIf="!isRetro">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" (click)="addSprint('review')" *ngIf="chosenSprint.reviewDetails" >Save</button>
+    <button type="button" class="btn btn-primary"  (click)="goto('retro')" *ngIf="chosenSprint.reviewDetails && saveReview"  >Next</button>
+ </div>
+</div>
+  </div>
+
+
+  <div class="row">
+    <div class="row w-100 p-3 justify-content-md-center" *ngIf="isRetro">
+      <p>A Retrospective is a ceremony held at the end of each iteration in an agile project. </p>
+    </div>
+<div class="row w-100 justify-content-md-center " *ngIf="isRetro">
+  <div class="form-group form-row">
+    <textarea [(ngModel)]="chosenSprint.retroDetails" name="ReviewTextarea" class="form-control" maxlength="115" style="min-height: 8em; min-width: 20em;" required></textarea>
+    <p>{{ getMaxCharCount(115, chosenSprint.retroDetails) }}</p>
+  </div>
+</div>
+<div class="row w-100 mb-5 justify-content-md-center" *ngIf="isRetro">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" (click)="addSprint('retro')" *ngIf="chosenSprint.retroDetails" >Save</button>
+    <button type="button" class="btn btn-primary"  (click)="goto('done')" *ngIf="chosenSprint.retroDetails  && saveRetro"  >Complete Sprint</button>
+ </div>
+</div>
+  </div>
+
+
+</div>

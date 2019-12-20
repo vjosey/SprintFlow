@@ -12,7 +12,6 @@ import { CurrentSprintComponent } from './current-sprint/current-sprint.componen
 import { CompletedSprintComponent } from './completed-sprint/completed-sprint.component';
 import { SprintPlanningComponent } from './sprint-planning/sprint-planning.component';
 import { SprintReviewComponent } from './sprint-review/sprint-review.component';
-import { SprintRetroComponent } from './sprint-retro/sprint-retro.component';
 import { SprintBoardComponent } from './sprint-board/sprint-board.component';
 import { SprintlistBoardComponent } from './sprintlist-board/sprintlist-board.component';
 
@@ -25,7 +24,6 @@ import { SprintlistBoardComponent } from './sprintlist-board/sprintlist-board.co
     CompletedSprintComponent,
     SprintPlanningComponent,
     SprintReviewComponent,
-    SprintRetroComponent,
     SprintBoardComponent,
     SprintlistBoardComponent
   ],

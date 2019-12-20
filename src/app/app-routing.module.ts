@@ -1,6 +1,5 @@
 import { SprintlistBoardComponent } from './sprintlist-board/sprintlist-board.component';
 import { SprintDetailsComponent } from './sprint-details/sprint-details.component';
-import { SprintRetroComponent } from './sprint-retro/sprint-retro.component';
 import { SprintReviewComponent } from './sprint-review/sprint-review.component';
 import { SprintPlanningComponent } from './sprint-planning/sprint-planning.component';
 import { SprintBoardComponent } from './sprint-board/sprint-board.component';
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: 'sprint-board/:id', component: SprintBoardComponent},
   { path: 'sprint-planning/:id', component: SprintPlanningComponent},
   { path: 'sprint-review/:id', component: SprintReviewComponent},
-  { path: 'sprint-retro/:id', component: SprintRetroComponent},
   { path: 'sprint-details/:id', component: SprintDetailsComponent},
   { path: 'sprint-planning', component: SprintPlanningComponent},
   { path: 'sprintlist-board', component: SprintlistBoardComponent}
