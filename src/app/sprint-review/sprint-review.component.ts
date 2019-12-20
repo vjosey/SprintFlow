@@ -45,9 +45,9 @@ export class SprintReviewComponent implements OnInit {
         }
 
     if (stage === 'retro') {
-      this.save();
       this.saveRetro = true;
       this.chosenSprint.status = 'COMPLETED';
+      this.save();
     }
 }
 
