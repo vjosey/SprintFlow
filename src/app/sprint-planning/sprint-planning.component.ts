@@ -64,7 +64,6 @@ selectedUserStory(story: UserStory) {
 }
 
 RemoveSelectedUserStory() {
- console.log(this.stories.indexOf(this.selectedStory));
  this.stories.splice(this.stories.indexOf(this.selectedStory), 1);
  $('#StoryModal').modal('hide');
  }
@@ -107,7 +106,6 @@ updateUserStory(close: boolean) {
     this.selectedStory.summary = this.selectedStory.description.substr(0, this.summarySize);
   }
 
-  console.log(this.stories);
 // Close modal box once done
   if (close) {
     $('#StoryModal').modal('hide');
@@ -150,7 +148,7 @@ if (this.stories.length && this.sprint.description && this.sprint.name && this.s
     }
   } else {
     // TODO: update sprint
-    console.log('Sprint Id, update');
+
   }
 
 } else {
@@ -240,7 +238,6 @@ this.editSelectedStory = bool;
 SetPriorityColor(priorityType: string): string
 {
 
-  console.log(priorityType);
   switch (priorityType) {
     case 'Lowest':
      return 'badge badge-primary';

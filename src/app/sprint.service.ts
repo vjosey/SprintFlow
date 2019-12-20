@@ -50,8 +50,6 @@ export class SprintService {
   }
 
  addSprint(sprint: Sprint): Observable<Sprint> {
-
-  console.log(sprint);
   return this.http.post<Sprint>(`${this.sprintUrl}/sprint`, sprint, this.httpOptions).pipe(
     catchError(this.handleError<Sprint>('addSprint', sprint))
   );
