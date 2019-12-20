@@ -15,6 +15,7 @@ export class SprintService {
 
   private sprintUrl = 'http://localhost:8080/api/sprintflow';  // TODO: URL to web; Change for production
 
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -27,6 +28,18 @@ export class SprintService {
     return this.http.get<Sprint[]>(this.sprintUrl).pipe(
       catchError(this.handleError<Sprint[]>('getSprints', []))
     );
+  }
+
+  getTopActiveSprints(): Observable<Sprint[]> {
+    const url = `${this.sprintUrl}/dashboard/active`;
+    return this.http.get<Sprint[]>(url).pipe(
+      catchError(this.handleError<Sprint[]>('getTopActiveSprints', [])));
+  }
+
+  getTopCompletedSprints(): Observable<Sprint[]> {
+    const url = `${this.sprintUrl}/dashboard/completed`;
+    return this.http.get<Sprint[]>(url).pipe(
+      catchError(this.handleError<Sprint[]>('getTopCompletedSprints', [])));
   }
 
   getSprintById(id: number): Observable<Sprint> {

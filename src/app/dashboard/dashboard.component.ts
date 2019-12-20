@@ -15,12 +15,13 @@ export class DashboardComponent implements OnInit {
 activeSprints: Sprint[] = [];
 completedSprints: Sprint[] = [];
 
-    constructor(private sprintService: SprintService, private router: Router, private route: ActivatedRoute ) { }
+  constructor(private sprintService: SprintService, private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit() {
-    this.getSprints();
+    // this.getSprints();
+    this.getTopActive();
+    this.getTopCompleted();
   }
-
 
   /*
   * When a user clicks on a sprint on the dashboard page it will navigate them to
@@ -39,9 +40,9 @@ completedSprints: Sprint[] = [];
   * that is for all other arrays in the active status.
   */
   sprintSorter(sprints: Sprint[]): void {
-    // tslint:disable-next-line: prefer-for-
     if (sprints.length !== 0) {
-      for(let index = 0; index < sprints.length; index++) {
+      // tslint:disable-next-line: prefer-for-of
+      for (let index = 0; index < sprints.length; index++) {
         if (sprints[index].status.toLowerCase() === 'completed' && this.completedSprints.length < 4) {
           this.completedSprints.push(sprints[index]);
         } else if (sprints[index].status.toLowerCase() !== 'completed' && this.activeSprints.length < 3) {
@@ -66,6 +67,18 @@ completedSprints: Sprint[] = [];
     this.sprintService.getSprints().subscribe( sprints => {
       this.sprintSorter(sprints);
      });
+  }
+
+  getTopActive(): void {
+    this.sprintService.getTopActiveSprints().subscribe(sprints => {
+      this.activeSprints = sprints;
+    });
+  }
+
+  getTopCompleted(): void {
+    this.sprintService.getTopCompletedSprints().subscribe(sprints => {
+      this.completedSprints = sprints;
+    });
   }
 
   showAllSprints(route: string): void {
