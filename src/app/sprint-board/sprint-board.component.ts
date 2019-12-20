@@ -177,8 +177,8 @@ checkStoryStatus() {
   }
   if (this.depoly.length > 0) {
     this.depoly.forEach(story => {
-         if (story.status !== 'DEPOLY') {
-          story.status = 'DEPOLY';
+         if (story.status !== 'DEPLOY') {
+          story.status = 'DEPLOY';
           }
     });
   }
